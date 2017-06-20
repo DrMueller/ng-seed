@@ -1,0 +1,3 @@
+<md-select (change)="onItemChanged($event)" [placeholder]="placeholderText" [(ngModel)]="selectedItemId">
+  <md-option *ngFor="let item of selectItems" [value]="item.id">{{ item.text }}</md-option>
+</md-select>

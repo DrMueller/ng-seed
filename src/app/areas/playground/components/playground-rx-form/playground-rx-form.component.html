@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <form class="form" [formGroup]="dataForm.formGroup">
+    <div class="row">
+
+      <div class="col-4">
+        <app-form-control [formGroup]="dataForm.formGroup" [validatedControl]="dataForm.getValidatedControl('emailControl')">
+          <div class="form__contentselector--body">
+            <div class="row">
+              <label for="emailId">Email address:</label>
+              <input type="email" class="form-control" id="emailId" placeholder="Enter email" formControlName="emailControl">
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <app-form-validation-error-display [validatedControl]="dataForm.getValidatedControl('emailControl')">
+                </app-form-validation-error-display>
+              </div>
+            </div>
+          </div>
+        </app-form-control>
+      </div>
+
+      <div class="col-4 offset-2">
+        <app-form-control [formGroup]="dataForm.formGroup" [validatedControl]="dataForm.getValidatedControl('emailControl')">
+          <div class="form__contentselector--body">
+            <div class="row">
+              <label for="emailId">Country:</label>
+              <app-select formControlName="countryControl" (itemChanged)="individualChanged($event)" [configuration]="countrySelectConfig" [items]="countries"></app-select>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <app-form-validation-error-display [validatedControl]="dataForm.getValidatedControl('emailControl')">
+                </app-form-validation-error-display>
+              </div>
+            </div>
+          </div>
+        </app-form-control>
+      </div>
+    </div>
+
+    <div class="row">
+      <button [disabled]="!dataForm.isFormValid" md-raised-button color="primary">Save</button>
+    </div>
+  </form>
+</div>

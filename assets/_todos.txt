@@ -1,0 +1,15 @@
+﻿-Enum Select
+-- Add selectedItem property
+-- Check with Form
+
+Add scripts
+error handling
+
+SCSS anschauen und fixen
+
+Create and document Snippets:
+- Create md button
+- Create Form-Entry
+
+
+https://github.com/matsko/ng4-animations-preview

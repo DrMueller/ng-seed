@@ -1,0 +1,14 @@
+@import "src/styles/styles";
+
+.col-card__heading {
+  display: inline-block;
+}
+
+.col-card__content-div {
+  overflow: hidden;
+}
+
+.card-header {
+  background: $app-accent;
+  color: $app-primary;
+}
