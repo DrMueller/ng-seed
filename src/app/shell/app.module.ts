@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '@angular/material';
 
 // third-parties
 import { AgGridModule } from 'ag-grid-angular/main';
@@ -32,7 +31,6 @@ import { AppComponent, AppRoutingModule } from '.';
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
-    MaterialModule,
     NgbModule.forRoot(),
     AppRoutingModule,
     CoreServicesModule,

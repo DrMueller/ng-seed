@@ -1,87 +1,66 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MdSelectChange } from '@angular/material';
 
-import { INameValuePair } from 'app/common/types/interfaces';
-import { EnumUtilities, JsObjUtilities } from 'app/common/utilities';
+import { SelectItem } from 'primeng/primeng'
 
-import { SelectConfiguration, ControlPropagationStrategy } from 'app/common/widgets/select';
+import { JsObjUtilities, EnumUtilities } from 'app/common/utilities';
+
+import { SelectConfiguration } from '../../models';
 
 @Component({
   selector: 'app-enum-select',
   templateUrl: './enum-select.component.html',
-  styleUrls: ['./enum-select.component.scss']
+  styleUrls: ['./enum-select.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => EnumSelectComponent),
+      multi: true
+    }
+  ]
 })
-export class EnumSelectComponent implements OnInit, ControlValueAccessor {
-  states = [{ code: 'AL', name: 'Alabama' }];
-
-  private _enum: any;
-
-  public nameValuePairs: INameValuePair<number>[] = [];
-  public selection;
+export class EnumSelectComponent implements ControlValueAccessor {
+  public selectedSelectItemId: number;
+  public selectItems: SelectItem[];
 
   @Output() public itemChanged = new EventEmitter<any>();
 
-  @Input() public set selectedItem(value: number) {
-    // this.internalSelectedItemValue = value;
-
-    if (value) {
-      this.selection = 0;
-    }
-  }
-
-  @Input() placeholderText: string;
-
   @Input() public set enum(value: any) {
-    this._enum = value;
-    this.nameValuePairs = EnumUtilities.getNamesAndValues(value);
+    this.selectItems = EnumUtilities.getNamesAndValues(value).map(f => {
+      const selectItem = <SelectItem> {
+        label: f.name,
+        value: f.value
+      };
+
+      return selectItem;
+    });
   }
 
-  private _propagateChange = (_: any) => { };
-
-  constructor() { }
-
-  ngOnInit() {
+  @Input() public set selectedItem(value: number) {
+    this.selectedSelectItemId = value;
   }
 
-  public selectItemChanged(mdSelectChange: MdSelectChange) {
-    // let selectedEnum: any;
+  public onItemChanged() {
+    this.broadcastChange();
+  }
 
-    // if (!JsObjUtilities.isNullOrUndefined(mdSelectChange.value)) {
-    //   selectedEnum = this.getEnumByIndex(mdSelectChange.value);
-    // }
+  private _formChangeCallback = (_: any) => { };
 
-    this.propagateChange(mdSelectChange.value);
+  private broadcastChange(): void {
+    this.itemChanged.emit(this.selectedSelectItemId);
+    this._formChangeCallback(this.selectedSelectItemId);
   }
 
   writeValue(obj: any): void {
-
+    this.selectedSelectItemId = obj;
   }
 
   registerOnChange(fn: any): void {
-    this._propagateChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    // Not needed atm
+    this._formChangeCallback = fn;
+    this.broadcastChange();
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    // Not needed atm
-  }
+  registerOnTouched(fn: any): void { }
 
-  // private getEnumByIndex(value: number): any | undefined {
-  //   if (JsObjUtilities.isNullOrUndefined(value)) {
-  //     return undefined;
-  //   }
-
-  //   const nameValuePair = this.nameValuePairs.find(f => f.value === value);
-  //   const result = this._enum[nameValuePair!.name];
-  //   return result;
-  // }
-
-  private propagateChange(item: any): void {
-    this.itemChanged.emit(item);
-    this._propagateChange(item);
-  }
+  setDisabledState(isDisabled: boolean): void { }
 }

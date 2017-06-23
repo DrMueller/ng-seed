@@ -1,4 +1,8 @@
-<app-enum-select (itemChanged)="countryChanged($event)" [enum]="country" [selectedItem]="selectedCountry" placeholderText="Select a Country..."></app-enum-select>
-{{ countryChangedText }}
+<div class="row">
+  <app-enum-select (itemChanged)="countryChanged($event)" [selectedItem]="selectedCountry" [enum]="countryEnum"></app-enum-select>
+  {{ countryChangedText }}
+</div>
 
-<button md-raised-button color="primary" (click)="setSwitzerlandClicked()">Set Switzerland</button>
+<div class="row">
+  <button class="bn btn-primary" (click)="setSwitzerlandClicked($event)">Set Switzerland</button>
+</div>

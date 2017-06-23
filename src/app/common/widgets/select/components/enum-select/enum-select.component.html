@@ -1,10 +1,1 @@
-<md-select (change)="selectItemChanged($event)" [placeholder]="placeholderText" [(ngModel)]="selection">
-  <md-option *ngFor="let item of nameValuePairs" [value]="item.value">{{ item.name }}</md-option>
-</md-select>
-
-
-<md-select placeholder="State" [(ngModel)]="selection">
-  <md-option *ngFor="let state of states" [value]="state.code">{{ state.name }}</md-option>
-</md-select>
-
-{{ internalSelectedItemValue }}
+<p-dropdown (onChange)="onItemChanged($event)" [options]="selectItems" [(ngModel)]="selectedSelectItemId" [filter]="true"></p-dropdown>

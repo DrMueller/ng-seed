@@ -13,12 +13,12 @@ import { Individual } from '../../models';
 export class PlaygroundSelectComponent implements OnInit {
   public individuals: Individual[] = [];
   public selectConfig = new SelectConfiguration('id', 'firstName', ControlPropagationStrategy.Object, 'placeholder');
-  public individualChangedText = 'Tra';
+  public individualChangedText = '';
 
   constructor() { }
 
   ngOnInit() {
-    this.createIndividuals();
+    this.individuals = Individual.createSome();
   }
 
   public individualChanged(individual: Individual | undefined): void {
@@ -29,12 +29,5 @@ export class PlaygroundSelectComponent implements OnInit {
     }
   }
 
-  private createIndividuals(): void {
-    this.individuals = [
-      new Individual('b321', 'Matthias', 'Müller'),
-      new Individual('a123', 'Patrick', 'Stewart'),
-      new Individual('c567', 'Stefanie', 'Heinzmann')
-    ];
-  }
 
 }

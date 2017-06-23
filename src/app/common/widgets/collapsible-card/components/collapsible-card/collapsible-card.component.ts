@@ -1,5 +1,8 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
+
 import { trigger, style, transition, state, animate, keyframes } from '@angular/animations';
+
+// import { animations } from './animations';
 
 @Component({
   selector: 'app-collapsible-card',

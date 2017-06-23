@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MdSelectModule } from '@angular/material';
+
+import { DropdownModule } from 'primeng/primeng';
 
 import * as comp from './components';
 
@@ -12,12 +13,13 @@ import * as comp from './components';
   ],
   imports: [
     CommonModule,
-    MdSelectModule,
-    FormsModule
+    FormsModule,
+    DropdownModule
   ],
   declarations: [
     comp.SelectComponent,
     comp.EnumSelectComponent
   ]
 })
+
 export class SelectModule { }

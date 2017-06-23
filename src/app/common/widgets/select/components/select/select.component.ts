@@ -1,9 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { SelectItem } from 'primeng/primeng'
 
 import { JsObjUtilities } from 'app/common/utilities';
 
-import { SelectItem, ControlPropagationStrategy, SelectConfiguration } from '../../models';
+import { SelectConfiguration } from '../../models';
 
 @Component({
   selector: 'app-select',
@@ -53,13 +55,13 @@ export class SelectComponent<T> implements ControlValueAccessor {
     this.broadcastChange();
   }
 
-  private _propagateChange = (_: any) => { };
+  private _formChangeCallback = (_: any) => { };
 
   private broadcastChange(): void {
     const businessItem = this.getBusinessItemFromSelection();
 
     this.itemChanged.emit(businessItem);
-    this.proppateChangeToForm(businessItem);
+    this._formChangeCallback(businessItem);
   }
 
   private getBusinessItemFromSelection(): T | undefined {
@@ -73,31 +75,22 @@ export class SelectComponent<T> implements ControlValueAccessor {
     return businessItem;
   }
 
-  private proppateChangeToForm(businessItem: T | undefined): void {
-    let itemToPropagate: any;
-    if (businessItem && this._configuration.controlPropagationStrategy === ControlPropagationStrategy.Id) {
-      itemToPropagate = businessItem[this._configuration.idPropertyName];
-    } else {
-      itemToPropagate = businessItem;
-    }
-
-    this._propagateChange(itemToPropagate);
-  }
-
   writeValue(obj: any): void {
-    this.selectedItemId = obj;
+    if (JsObjUtilities.isNullOrUndefined(obj)) {
+      this.selectedItemId = this.selectItems[0].value;
+    } else {
+      this.selectedItemId = obj[this._configuration.idPropertyName];
+    }
   }
 
   registerOnChange(fn: any): void {
-    this._propagateChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    // Not needed atm
+    this._formChangeCallback = fn;
+    this.broadcastChange();
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    // Not needed atm
-  }
+  registerOnTouched(fn: any): void {}
+
+  setDisabledState(isDisabled: boolean): void {}
 
   private setItemsIfReady(): void {
     if (this._configuration) {
@@ -112,7 +105,10 @@ export class SelectComponent<T> implements ControlValueAccessor {
   private mapToSelectItem(item: T): SelectItem {
     const id = item[this._configuration.idPropertyName];
     const text = item[this._configuration.displayTextPropertyName];
-    return new SelectItem(id, text);
+    return <SelectItem>{
+      label: text,
+      value: id
+    };
   }
 
   private mapToBusinessItem(): T {

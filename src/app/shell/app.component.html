@@ -1,23 +1,16 @@
-<md-sidenav-container class="app__sidenav-container--fullsize">
-  <md-toolbar color="primary">
-    <div class="app__header-div">
-      <span [@sidebarArrowAnimation]="isSidebarOpen" class="fa fa-arrow-right fa-2x" (click)="openNavigationClicked()"></span>
-      <span>&nbsp;|&nbsp;</span>
-      <span class="app__header-title">
-        {{applicationTitle }}
-      </span>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">{{ applicationTitle }}</a>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLinkActive="active" *ngFor="let nav of appNavigationEntries" [routerLink]="nav.baseUrl">{{ nav.displayText }}</a>
     </div>
-  </md-toolbar>
-
-  <md-sidenav #sidenav mode="push" opened="false">
-    <md-nav-list>
-      <md-list-item *ngFor="let nav of appNavigationEntries">
-        <a (click)="navigationClicked()" class="nav-link" [routerLink]="nav.baseUrl">{{ nav.displayText }}</a>
-      </md-list-item>
-    </md-nav-list>
-  </md-sidenav>
-
-  <div class="container-fluid">
-    <router-outlet></router-outlet>
   </div>
-</md-sidenav-container>
+</nav>
+
+<div class="jumbotron">
+  <router-outlet></router-outlet>
+</div>

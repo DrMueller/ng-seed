@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
 
 import { EditorModule, SharedModule } from 'primeng/primeng';
 
@@ -16,7 +15,6 @@ import { PlaygroundRoutingModule } from './playground-routing.module';
   imports: [
     CommonModule,
     PlaygroundRoutingModule,
-    MaterialModule,
     CollapsibleCardModule,
     SelectModule,
     EditorModule,

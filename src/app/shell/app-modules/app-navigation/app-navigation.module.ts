@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '@angular/material';
 
 import * as serv from './services';
 
@@ -8,8 +7,7 @@ import * as serv from './services';
   exports: [
   ],
   imports: [
-    CommonModule,
-    MaterialModule
+    CommonModule
   ],
   declarations: [
   ],

@@ -12,9 +12,9 @@ import { Country } from '../../models';
 export class PlaygroundEnumSelectComponent implements OnInit {
 
   public countryChangedText: string;
-  public selectedCountry: any;
+  public selectedCountry: Country;
 
-  public get country(): any {
+  public get countryEnum(): any {
     return Country;
   }
 
@@ -24,10 +24,11 @@ export class PlaygroundEnumSelectComponent implements OnInit {
   }
 
   public setSwitzerlandClicked(): void {
-    this.selectedCountry = Country.England;
+    this.selectedCountry = Country.Switzerland;
   }
 
-  public countryChanged(country: Country | undefined): void {
+  public countryChanged(country: Country): void {
+    this.selectedCountry = country;
     if (JsObjUtilities.isNullOrUndefined(country)) {
       this.countryChangedText = 'Country changed to undefined!';
     } else {

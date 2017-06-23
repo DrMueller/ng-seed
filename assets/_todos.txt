@@ -1,15 +1,14 @@
-﻿-Enum Select
--- Add selectedItem property
--- Check with Form
+﻿- Enum Select
+
+Try to enhance the rx-form stuff, especially HTML
 
 Add scripts
-error handling
-
-SCSS anschauen und fixen
 
 Create and document Snippets:
-- Create md button
 - Create Form-Entry
 
+Styleset:
+ welche H?
 
-https://github.com/matsko/ng4-animations-preview
+Firebase:
+- Auth
