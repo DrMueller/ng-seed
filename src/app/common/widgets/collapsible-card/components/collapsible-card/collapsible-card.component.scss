@@ -1,4 +1,4 @@
-@import "src/styles/styles";
+@import "src/styles/_variables";
 
 .col-card__heading {
   display: inline-block;
@@ -9,6 +9,6 @@
 }
 
 .card-header {
-  background: $app-accent;
-  color: $app-primary;
+  background: $gray-light;
+  color: $white;
 }

@@ -1,16 +1,20 @@
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+<div class="container-fluid">
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-faded">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">{{ applicationTitle }}</a>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLinkActive="active" *ngFor="let nav of appNavigationEntries" [routerLink]="nav.baseUrl">{{ nav.displayText }}</a>
+    <a class="navbar-brand" href="#">{{ applicationTitle }}</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <li class="nav-item" *ngFor="let nav of appNavigationEntries">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="nav.baseUrl">{{ nav.displayText }}</a>
+        </li>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<div class="jumbotron">
-  <router-outlet></router-outlet>
+  <div class="jumbotron">
+    <router-outlet></router-outlet>
+  </div>
 </div>

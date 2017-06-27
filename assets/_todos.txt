@@ -1,14 +1,6 @@
-﻿- Enum Select
-
-Try to enhance the rx-form stuff, especially HTML
+﻿Try to enhance the rx-form stuff, especially HTML
 
 Add scripts
 
 Create and document Snippets:
 - Create Form-Entry
-
-Styleset:
- welche H?
-
-Firebase:
-- Auth

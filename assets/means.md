@@ -12,4 +12,4 @@
 - Moment
 - Ng2 Toastr
 - NgPrime (incl. Quill)
-
+- Bootstrap Theme: https://bootswatch.com/4-alpha/cyborg/
