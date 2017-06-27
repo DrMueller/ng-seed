@@ -22,7 +22,6 @@ import { RxFormsModule } from 'app/common/widgets/rx-forms';
 // app
 import { AppComponent, AppRoutingModule } from '.';
 
-
 @NgModule({
   declarations: [
     AppComponent
