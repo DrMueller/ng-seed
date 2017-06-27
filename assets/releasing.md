@@ -17,3 +17,4 @@ The Angular CLI build by default to a dist-folder, therefore we should configure
 - Navigate to the Resource
 - Select Settings --> Application Settings
 - On the App Settings, create a variable called *Project* with the relative path, for example "dist"
+- Check, that the folder is not in .gitignore
