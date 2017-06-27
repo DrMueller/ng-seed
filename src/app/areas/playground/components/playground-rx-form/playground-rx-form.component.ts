@@ -19,8 +19,9 @@ export class PlaygroundRxFormComponent implements OnInit {
   public individualSelectConfig = new SelectConfiguration('id', 'firstName', ControlPropagationStrategy.Object, 'Placeholder-Text');
   public dataForm: rx.FormWithValidation;
   public get countryEnum(): any {
-      return Country;
+    return Country;
   }
+
 
   public formData: string;
 
@@ -46,5 +47,14 @@ export class PlaygroundRxFormComponent implements OnInit {
 
   public showDataClicked(): void {
     this.formData = JSON.stringify(this.dataForm.formGroup.value);
+  }
+
+  public getControlStatusDescription(controlName: string): string {
+    const isValid = this.dataForm.formGroup.get(controlName)!.valid;
+    const isDirty = this.dataForm.formGroup.get(controlName)!.dirty;
+    const isTouched = this.dataForm.formGroup.get(controlName)!.touched;
+
+    const result = `Valid: ${isValid}. Dirty: ${isDirty}. Touched: ${isTouched}.`;
+    return result;
   }
 }

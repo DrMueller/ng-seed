@@ -17,8 +17,7 @@
 
             <div class="row">
               <div class="col-12">
-                Valid: {{ this.dataForm.formGroup.get('emailControl').valid }} <br/> Dirty: {{ this.dataForm.formGroup.get('emailControl').dirty
-                }} <br/> Touched: {{ this.dataForm.formGroup.get('emailControl').touched }} <br/>
+                {{ getControlStatusDescription('emailControl') }}
               </div>
             </div>
           </div>
@@ -42,10 +41,7 @@
             </div>
 
             <div class="row">
-              <div class="col-12">
-                Valid: {{ this.dataForm.formGroup.get('individualControl').valid }} <br/> Dirty: {{ this.dataForm.formGroup.get('individualControl').dirty
-                }} <br/> Touched: {{ this.dataForm.formGroup.get('individualControl').touched }} <br/>
-              </div>
+              {{ getControlStatusDescription('individualControl') }}
             </div>
           </div>
         </app-form-control>
@@ -70,10 +66,7 @@
             </div>
 
             <div class="row">
-              <div class="col-12">
-                Valid: {{ this.dataForm.formGroup.get('countryControl').valid }} <br/> Dirty: {{ this.dataForm.formGroup.get('countryControl').dirty
-                }} <br/> Touched: {{ this.dataForm.formGroup.get('countryControl').touched }} <br/>
-              </div>
+              {{ getControlStatusDescription('countryControl') }}
             </div>
           </div>
         </app-form-control>
@@ -81,8 +74,8 @@
     </div>
 
     <div class="row">
-      <button [disabled]="!dataForm.isFormValid" (click)="showDataClicked($event)" class="btn btn-primary">Show Data!</button>
-      <button (click)="fillFormClicked($event)" class="btn btn-primary">Fill Form</button>
+      <button [disabled]="!dataForm.isFormValid" (click)="showDataClicked()" class="btn btn-primary">Show Data</button>
+      <button (click)="fillFormClicked()" class="btn btn-primary">Fill Form</button>
     </div>
 
     <div *ngIf="formData">
