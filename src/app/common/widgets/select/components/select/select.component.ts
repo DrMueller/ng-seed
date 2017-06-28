@@ -47,10 +47,6 @@ export class SelectComponent<T> implements ControlValueAccessor {
     };
   }
 
-  public get placeholderText(): string {
-    return this._configuration.placeholderText;
-  }
-
   public onItemChanged() {
     this.broadcastChange();
   }
@@ -88,9 +84,9 @@ export class SelectComponent<T> implements ControlValueAccessor {
     this.broadcastChange();
   }
 
-  registerOnTouched(fn: any): void {}
+  registerOnTouched(fn: any): void { }
 
-  setDisabledState(isDisabled: boolean): void {}
+  setDisabledState(isDisabled: boolean): void { }
 
   private setItemsIfReady(): void {
     if (this._configuration) {

@@ -14,7 +14,8 @@ import * as comp from './form-validation/components';
     ReactiveFormsModule,
     FormsModule,
     comp.FormControlComponent,
-    comp.FormValidationErrorDisplayComponent
+    comp.FormValidationErrorDisplayComponent,
+    comp.FormControlWithValidationComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +24,8 @@ import * as comp from './form-validation/components';
   ],
   declarations: [
     comp.FormValidationErrorDisplayComponent,
-    comp.FormControlComponent
+    comp.FormControlComponent,
+    comp.FormControlWithValidationComponent
   ]
 })
 

@@ -1,6 +1,2 @@
-﻿Try to enhance the rx-form stuff, especially HTML
-
-Add scripts
-
-Create and document Snippets:
+﻿Create and document Snippets:
 - Create Form-Entry

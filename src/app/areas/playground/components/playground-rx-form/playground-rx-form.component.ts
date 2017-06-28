@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as rx from 'app/common/widgets/rx-forms';
-import { SelectConfiguration, ControlPropagationStrategy } from 'app/common/widgets/select';
+import { SelectConfiguration } from 'app/common/widgets/select';
 
 import { Individual, Country } from '../../models';
 
@@ -16,12 +16,11 @@ import { FormBuilder } from './form.builder';
 export class PlaygroundRxFormComponent implements OnInit {
   public individuals = Individual.createSome();
 
-  public individualSelectConfig = new SelectConfiguration('id', 'firstName', ControlPropagationStrategy.Object, 'Placeholder-Text');
+  public individualSelectConfig = new SelectConfiguration('id', 'firstName');
   public dataForm: rx.FormWithValidation;
   public get countryEnum(): any {
     return Country;
   }
-
 
   public formData: string;
 

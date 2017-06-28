@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SelectComponent, SelectConfiguration, ControlPropagationStrategy } from 'app/common/widgets/select';
+import { SelectComponent, SelectConfiguration } from 'app/common/widgets/select';
 
 import { Individual } from '../../models';
 
@@ -12,7 +12,7 @@ import { Individual } from '../../models';
 })
 export class PlaygroundSelectComponent implements OnInit {
   public individuals: Individual[] = [];
-  public selectConfig = new SelectConfiguration('id', 'firstName', ControlPropagationStrategy.Object, 'placeholder');
+  public selectConfig = new SelectConfiguration('id', 'firstName');
   public individualChangedText = '';
 
   constructor() { }

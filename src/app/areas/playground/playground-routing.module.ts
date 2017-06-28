@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: 'enum-select', component: comp.PlaygroundEnumSelectComponent },
       { path: 'primeng-editor', component: comp.PlaygroundPrimengEditorComponent },
       { path: 'rx-validation', component: comp.PlaygroundRxFormComponent },
+      { path: 'rx-fc', component: comp.PlaygroundRxFormControlWithValidationComponent },
       { path: 'error', component: comp.PlaygroundErrorComponent },
     ]
   }];

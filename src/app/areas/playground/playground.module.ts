@@ -29,7 +29,8 @@ import { PlaygroundRoutingModule } from './playground-routing.module';
     comp.PlaygroundPrimengEditorComponent,
     comp.PlaygroundRxFormComponent,
     comp.PlaygroundEnumSelectComponent,
-    comp.PlaygroundErrorComponent
+    comp.PlaygroundErrorComponent,
+    comp.PlaygroundRxFormControlWithValidationComponent
   ]
 })
 export class PlaygroundModule { }
