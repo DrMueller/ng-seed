@@ -7,41 +7,36 @@ import 'rxjs/add/operator/toPromise';
 
 import { JsObjUtilities, JsObjFactory } from '../../utilities';
 import { IParameterlessConstructor } from '../../types/interfaces';
-import { ApiEndpoint } from '../../types/enums';
-import { ContentType } from './enums';
-import { IHttpService } from '.';
+import { ContentType, ApiEndpoint } from './enums';
 
-export abstract class HttpBaseService implements IHttpService {
+export abstract class HttpBaseService {
   public abstract get apiEndpoint(): ApiEndpoint;
 
   protected constructor(private http: Http, private baseUrl: string) { }
 
-  public get<T>(relativeUrl: string, ctor: IParameterlessConstructor<T> | null = null): Promise<T> {
+  public getAsync<T>(relativeUrl: string, ctor: IParameterlessConstructor<T> | null = null): Promise<T> {
     const completeUrl = this.createCompleteUrl(relativeUrl);
     const requestOptions = this.createRequestOptions();
     return this.processResponse(this.http.get(completeUrl, requestOptions), ctor);
   }
 
-  public getArray<T>(
+  public async getArrayAsync<T>(
     relativeUrl: string,
     ctor: IParameterlessConstructor<T>): Promise<T[]> {
     const completeUrl = this.createCompleteUrl(relativeUrl);
 
     const requestOptions = this.createRequestOptions();
+    const array = await this.processResponse<any[]>(this.http.get(completeUrl, requestOptions));
 
-    const arrayResult = this.processResponse<any[]>(this.http.get(completeUrl, requestOptions)).then(arr => {
-      if (arr) {
-        return arr.map(item => {
-          const newObj = JsObjFactory.create(item, ctor);
-          return newObj;
-        });
-      }
+    const arrayResult = array.map(item => {
+      const newObj = JsObjFactory.create(item, ctor);
+      return newObj;
     });
 
     return arrayResult;
   }
 
-  public post<T>(
+  public postAsync<T>(
     relativeUrl: string,
     body: any,
     ctor: IParameterlessConstructor<T> | null = null,
@@ -53,13 +48,15 @@ export abstract class HttpBaseService implements IHttpService {
     return this.processResponse(this.http.post(completeUrl, body, requestOptions), ctor);
   }
 
-  public delete(relativeUrl: string): Promise<null> {
+  public deleteAsync(relativeUrl: string): Promise<void> {
     const completeUrl = this.createCompleteUrl(relativeUrl);
     const requestOptions = this.createRequestOptions();
-    return this.processResponse(this.http.delete(completeUrl, requestOptions));
+    const result = this.processResponse<void>(this.http.delete(completeUrl, requestOptions));
+
+    return result;
   }
 
-  public put<T>(
+  public putASync<T>(
     relativeUrl: string,
     body: any,
     ctor: IParameterlessConstructor<T> | null = null,
@@ -71,7 +68,7 @@ export abstract class HttpBaseService implements IHttpService {
     return this.processResponse(this.http.put(completeUrl, body, requestOptions), ctor);
   }
 
-  public patch<T>(relativeUrl: string,
+  public patchAsync<T>(relativeUrl: string,
     body: any,
     ctor: IParameterlessConstructor<T> | null = null,
     contentType: ContentType = ContentType.ApplicationJson): Promise<T> {
@@ -81,7 +78,7 @@ export abstract class HttpBaseService implements IHttpService {
     return this.processResponse(this.http.patch(completeUrl, body, requestOptions), ctor);
   }
 
-  private processResponse<T>(response: Observable<Response>, ctor: IParameterlessConstructor<T> | null = null): Promise<T | null> {
+  private processResponse<T>(response: Observable<Response>, ctor: IParameterlessConstructor<T> | null = null): Promise<T> {
     let mappedResult = response.map(this.extractData);
 
     if (ctor) {

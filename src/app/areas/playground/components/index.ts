@@ -7,3 +7,4 @@ export * from './playground-rx-form';
 export * from './playground-enum-select';
 export * from './playground-error';
 export * from './playground-rx-form-control-with-validation';
+export * from './playground-server-get';

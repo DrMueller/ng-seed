@@ -8,7 +8,9 @@ import { SelectModule } from '../../common/widgets/select';
 import { RxFormsModule } from '../../common/widgets/rx-forms';
 
 import * as comp from './components';
+import * as serv from './services';
 import { PlaygroundRoutingModule } from './playground-routing.module';
+
 
 
 @NgModule({
@@ -30,7 +32,11 @@ import { PlaygroundRoutingModule } from './playground-routing.module';
     comp.PlaygroundRxFormComponent,
     comp.PlaygroundEnumSelectComponent,
     comp.PlaygroundErrorComponent,
-    comp.PlaygroundRxFormControlWithValidationComponent
+    comp.PlaygroundRxFormControlWithValidationComponent,
+    comp.PlaygroundServerGetComponent
+  ],
+  providers: [
+    serv.PlaygroundHttpService
   ]
 })
 export class PlaygroundModule { }

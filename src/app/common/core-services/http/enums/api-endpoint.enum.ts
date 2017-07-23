@@ -1,4 +1,3 @@
 export enum ApiEndpoint {
-  Offers = 0,
-  Tfs = 1
+  TestMicroservice = 0
 };

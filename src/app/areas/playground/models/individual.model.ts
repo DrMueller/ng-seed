@@ -1,16 +1,28 @@
 export class Individual {
+  public id: string | undefined = undefined;
+  public firstName: string | undefined = undefined;
+  public lastName: string | undefined = undefined;
+
   public static createSome(): Individual[] {
     const result = [
-      new Individual('b321', 'Matthias', 'Müller'),
-      new Individual('a123', 'Patrick', 'Stewart'),
-      new Individual('c567', 'Stefanie', 'Heinzmann')
+      <Individual>{
+        id: 'b321',
+        firstName: 'Matthias',
+        lastName: 'Müller'
+      },
+      <Individual>{
+        id: 'a123',
+        firstName: 'Patrick',
+        lastName: 'Stewart'
+      },
+      <Individual>{
+        id: 'c567',
+        firstName: 'Stefanie',
+        lastName: 'Heinzmann'
+      }
+
     ];
 
     return result;
   }
-
-  constructor(public id: string, public firstName: string, public lastName: string) {
-  }
-
-
 }
