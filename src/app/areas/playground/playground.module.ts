@@ -12,7 +12,6 @@ import * as serv from './services';
 import { PlaygroundRoutingModule } from './playground-routing.module';
 
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -33,10 +32,12 @@ import { PlaygroundRoutingModule } from './playground-routing.module';
     comp.PlaygroundEnumSelectComponent,
     comp.PlaygroundErrorComponent,
     comp.PlaygroundRxFormControlWithValidationComponent,
-    comp.PlaygroundServerGetComponent
+    comp.PlaygroundServerGetComponent,
+    comp.PlaygroundServerPostComponent
   ],
   providers: [
-    serv.PlaygroundHttpService
+    serv.PlaygroundHttpService,
+    serv.PlaygroundIndividualService
   ]
 })
 export class PlaygroundModule { }

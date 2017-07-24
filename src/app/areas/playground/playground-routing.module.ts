@@ -17,7 +17,8 @@ const routes: Routes = [
       { path: 'rx-validation', component: comp.PlaygroundRxFormComponent },
       { path: 'rx-fc', component: comp.PlaygroundRxFormControlWithValidationComponent },
       { path: 'error', component: comp.PlaygroundErrorComponent },
-      { path: 'server-get', component: comp.PlaygroundServerGetComponent }
+      { path: 'server-get', component: comp.PlaygroundServerGetComponent },
+      { path: 'server-post', component: comp.PlaygroundServerPostComponent }
     ]
   }];
 

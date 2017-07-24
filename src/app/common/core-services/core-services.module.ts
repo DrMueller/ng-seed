@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { EnvironmentService } from './environment';
-import { ToastService, ToastConfigService } from './toast/services';
+import { ToastService, ToastConfigurationService } from './toast/services';
 import { EventDispatcherService } from './event-dispatching';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { EventDispatcherService } from './event-dispatching';
   providers: [
     EnvironmentService,
     ToastService,
-    ToastConfigService,
+    ToastConfigurationService,
     EventDispatcherService
   ]
 })

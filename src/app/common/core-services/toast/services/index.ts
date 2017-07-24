@@ -1,2 +1,2 @@
 export * from './toast.service';
-export * from './toast-config.service';
+export * from './toast-configuration.service';

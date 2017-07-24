@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PlaygroundHttpService } from '../../services';
+import { PlaygroundIndividualService } from '../../services';
 import { Individual } from '../../models';
 
 @Component({
@@ -11,14 +11,14 @@ import { Individual } from '../../models';
 export class PlaygroundServerGetComponent implements OnInit {
   public individuals: Individual[] = [];
 
-  constructor(private pgHttpService: PlaygroundHttpService) { }
+  constructor(private playgroundIndividualService: PlaygroundIndividualService) { }
 
   ngOnInit() {
     this.getIndividualsAsync();
   }
 
   private async getIndividualsAsync(): Promise<void> {
-    const relativeUrl = 'Individual';
-    this.individuals = await this.pgHttpService.getArrayAsync(relativeUrl, Individual);
+    const relativeUrl = 'Individuals';
+    this.individuals = await this.playgroundIndividualService.getIndividualsAsync();
   }
 }
