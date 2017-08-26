@@ -8,6 +8,8 @@ import { EnvironmentService } from './environment';
 import { ToastService, ToastConfigurationService } from './toast/services';
 import { EventDispatcherService } from './event-dispatching';
 
+// Not adding the mediators as providers here, since this should be used in the components
+
 @NgModule({
   imports: [
     CommonModule,
