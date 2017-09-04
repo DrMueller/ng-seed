@@ -3,3 +3,4 @@
 ### Solution
 Execute the following command in the Shell: <br/>
 __npm rebuild node-sass__
+
