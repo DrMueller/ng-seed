@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NgProvideUtilities } from 'app/infrastructure/utilities';
+import { NgProvideUtils } from 'app/infrastructure/utils';
 
 import * as comp from './components';
 import * as serv from './services';
@@ -26,7 +26,7 @@ export class ErrorModule {
         serv.ErrorDispatcherService,
         serv.ErrorDisplayService,
         serv.ErrorAppInitializationService,
-        NgProvideUtilities.provideClass(ErrorHandler, serv.GlobalErrorCatcherService)
+        NgProvideUtils.provideClass(ErrorHandler, serv.GlobalErrorCatcherService)
       ]
     };
   }

@@ -1,6 +1,6 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-import { JsObjUtilities } from '../../../../../utilities';
+import { ObjectUtils } from 'app/infrastructure/utils';
 
 import { IValidator, IValidatorFunctionResult } from '..';
 
@@ -31,7 +31,7 @@ export class RequiredValidator implements IValidator {
   }
 
   private checkIfValueIsEmptyNullorUndefined(value: any): boolean {
-    if (JsObjUtilities.isNullOrUndefined(value)) {
+    if (ObjectUtils.isNullOrUndefined(value)) {
       return true;
     }
 

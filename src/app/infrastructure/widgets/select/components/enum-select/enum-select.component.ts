@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SelectItem } from 'primeng/primeng'
 
-import { JsObjUtilities, EnumUtilities } from 'app/infrastructure/utilities';
+import { ObjectUtils, EnumUtils } from 'app/infrastructure/utils';
 
 import { SelectConfiguration } from '../../models';
 
@@ -26,7 +26,7 @@ export class EnumSelectComponent implements ControlValueAccessor {
   @Output() public itemChanged = new EventEmitter<any>();
 
   @Input() public set enum(value: any) {
-    this.selectItems = EnumUtilities.getNamesAndValues(value).map(f => {
+    this.selectItems = EnumUtils.getNamesAndValues(value).map(f => {
       const selectItem = <SelectItem> {
         label: f.name,
         value: f.value

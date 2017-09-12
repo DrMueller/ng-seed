@@ -8,8 +8,9 @@ import { EnvironmentService } from './environment';
 import { ToastService, ToastConfigurationService } from './toast/services';
 import { EventDispatcherService } from './event-dispatching';
 import * as http from './http';
+import { ObjectFactoryService } from './object-creation';
 
-// Not adding the mediators as providers here, since this should be used in the components
+// Not adding the mediators as providers here, since they should be used in the components
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import * as http from './http';
     ToastService,
     ToastConfigurationService,
     EventDispatcherService,
-    http.PlaygroundHttpService
+    http.PlaygroundHttpService,
+    ObjectFactoryService
   ]
 })
 export class CoreServicesModule { }

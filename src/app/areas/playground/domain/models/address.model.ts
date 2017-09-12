@@ -1,5 +1,3 @@
-import { ConstructableProperty } from 'app/infrastructure/decorators';
-
 export class Address {
   public streetName: string | undefined = undefined;
 

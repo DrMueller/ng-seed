@@ -5,14 +5,17 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-import { JsObjUtilities, JsObjFactory } from 'app/infrastructure/utilities';
+import { ObjectUtils } from 'app/infrastructure/utils';
 import { IParameterlessConstructor } from 'app/infrastructure/types/interfaces';
+
+import { ObjectFactoryService } from 'app/infrastructure/core-services/object-creation';
+
 import { ContentType, ApiEndpoint } from '../../enums';
 
 export abstract class HttpBaseService {
   public abstract get apiEndpoint(): ApiEndpoint;
 
-  protected constructor(private http: Http, private baseUrl: string) { }
+  protected constructor(private http: Http, private objectFactoryService: ObjectFactoryService, private baseUrl: string) { }
 
   public getAsync<T>(relativeUrl: string, ctor: IParameterlessConstructor<T> | null = null): Promise<T> {
     const completeUrl = this.createCompleteUrl(relativeUrl);
@@ -29,7 +32,7 @@ export abstract class HttpBaseService {
     const array = await this.processResponse<any[]>(this.http.get(completeUrl, requestOptions));
 
     const arrayResult = array.map(item => {
-      const newObj = JsObjFactory.create(item, ctor);
+      const newObj = this.objectFactoryService.create(item, ctor);
       return newObj;
     });
 
@@ -83,7 +86,7 @@ export abstract class HttpBaseService {
 
     if (ctor) {
       mappedResult = mappedResult.map(f => {
-        const newObj = JsObjFactory.create(f, ctor);
+        const newObj = this.objectFactoryService.create(f, ctor);
         return newObj;
       });
     }
@@ -123,7 +126,7 @@ export abstract class HttpBaseService {
       body = res.json();
     }
 
-    if (!JsObjUtilities.isNullOrUndefined(body)) {
+    if (!ObjectUtils.isNullOrUndefined(body)) {
       return body;
     }
 

@@ -1,4 +1,4 @@
-import { ConstructableProperty } from 'app/infrastructure/decorators';
+import { ConstructableProperty } from 'app/infrastructure/core-services/object-creation';
 
 import { Address } from '.';
 

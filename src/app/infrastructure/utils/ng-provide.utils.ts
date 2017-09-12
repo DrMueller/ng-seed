@@ -1,6 +1,6 @@
 import { ValueProvider, ClassProvider } from '@angular/core';
 
-export class NgProvideUtilities {
+export class NgProvideUtils {
   public static provideValue(provide: any, useValue: any, multi?: boolean): ValueProvider {
     return {
       multi: multi,

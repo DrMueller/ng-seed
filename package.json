@@ -38,7 +38,7 @@
     "quill": "1.2.6",
     "reflect-metadata": "^0.1.10",
     "rxjs": "5.1.0",
-    "tether": "1.4.0",
+    "tether": "^1.4.0",
     "web-animations-js": "2.2.5",
     "zone.js": "0.8.4"
   },

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { JsObjUtilities } from 'app/infrastructure/utilities';
+import { ObjectUtils } from 'app/infrastructure/utils';
 
 import { Country } from '../../models';
 
@@ -29,7 +29,7 @@ export class PlaygroundEnumSelectComponent implements OnInit {
 
   public countryChanged(country: Country): void {
     this.selectedCountry = country;
-    if (JsObjUtilities.isNullOrUndefined(country)) {
+    if (ObjectUtils.isNullOrUndefined(country)) {
       this.countryChangedText = 'Country changed to undefined!';
     } else {
       this.countryChangedText = `Country changed to: ${Country[country!]}.`;

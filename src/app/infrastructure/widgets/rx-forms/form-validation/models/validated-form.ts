@@ -1,6 +1,6 @@
 import { ValidatedControl, ValidationError } from '.';
 
-import { JsObjUtilities } from '../../../../utilities';
+import { ObjectUtils } from '../../../../utils';
 
 export class ValidatedForm {
   public constructor(private validatedControls: ValidatedControl[]) {
@@ -17,7 +17,7 @@ export class ValidatedForm {
 
   public getControlsWithModelBinding(): ValidatedControl[] {
     const result = this.validatedControls.filter(control => {
-      return !JsObjUtilities.isNullOrUndefined(control.modelPropertyName);
+      return !ObjectUtils.isNullOrUndefined(control.modelPropertyName);
     });
 
     return result;

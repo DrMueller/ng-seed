@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { JsObjFactory } from 'app/infrastructure/utilities';
+import { ObjectFactoryService } from 'app/infrastructure/core-services/object-creation';
 
 import { Organisation, Individual } from '../../models';
 
@@ -13,11 +13,11 @@ export class PlaygroundReflectComponent implements OnInit {
 
   public organisation: Organisation;
 
-  constructor() { }
+  constructor(private objFactoryService: ObjectFactoryService) { }
 
   ngOnInit() {
     const org = this.createOrg();
-    this.organisation = JsObjFactory.create(org, Organisation);
+    this.organisation = this.objFactoryService.create(org, Organisation);
   }
 
   public get organisationIndividuals(): Individual[] {

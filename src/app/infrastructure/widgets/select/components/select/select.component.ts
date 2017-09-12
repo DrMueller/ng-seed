@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SelectItem } from 'primeng/primeng'
 
-import { JsObjUtilities } from 'app/infrastructure/utilities';
+import { ObjectUtils } from 'app/infrastructure/utils';
 
 import { SelectConfiguration } from '../../models';
 
@@ -40,7 +40,7 @@ export class SelectComponent<T> implements ControlValueAccessor {
   }
 
   @Input() public set selectedItem(value: T | null) {
-    if (!JsObjUtilities.isNullOrUndefined(value)) {
+    if (!ObjectUtils.isNullOrUndefined(value)) {
       this.selectedItemId = value![this._configuration.idPropertyName];
     } else {
       this.selectedItemId = null;
@@ -72,7 +72,7 @@ export class SelectComponent<T> implements ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    if (JsObjUtilities.isNullOrUndefined(obj)) {
+    if (ObjectUtils.isNullOrUndefined(obj)) {
       this.selectedItemId = this.selectItems[0].value;
     } else {
       this.selectedItemId = obj[this._configuration.idPropertyName];

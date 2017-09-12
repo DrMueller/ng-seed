@@ -1,4 +1,4 @@
-export class JsObjUtilities {
+export class ObjectUtils {
   public static isNullOrUndefined(obj: any): boolean {
     if (obj === null) {
       return true;
