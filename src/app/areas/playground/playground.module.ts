@@ -7,8 +7,8 @@ import { CollapsibleCardModule } from 'app/infrastructure/widgets/collapsible-ca
 import { SelectModule } from 'app/infrastructure/widgets/select';
 import { RxFormsModule } from 'app/infrastructure/widgets/rx-forms';
 
-import * as comp from '../domain/components';
-import * as serv from '../domain/services';
+import * as comp from './domain/components';
+import * as serv from './domain/services';
 
 import { PlaygroundRoutingModule } from './playground-routing.module';
 
@@ -37,7 +37,8 @@ import { PlaygroundRoutingModule } from './playground-routing.module';
     comp.PgOrgMainComponent,
     comp.PgOrgAddressComponent,
     comp.PgOrgHqComponent,
-    comp.PgOrgAddressComponent
+    comp.PgOrgAddressComponent,
+    comp.PlaygroundReflectComponent
   ],
   providers: [
     serv.PlaygroundIndividualService

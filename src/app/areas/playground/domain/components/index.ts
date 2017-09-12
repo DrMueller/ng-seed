@@ -10,3 +10,4 @@ export * from './playground-rx-form-control-with-validation';
 export * from './playground-server-get';
 export * from './playground-server-post';
 export * from './playground-comp-communication';
+export * from './playground-reflect';

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import * as comp from '../domain/components';
+import * as comp from './domain/components';
 
 const routes: Routes = [
   {
@@ -19,7 +19,8 @@ const routes: Routes = [
       { path: 'error', component: comp.PlaygroundErrorComponent },
       { path: 'server-get', component: comp.PlaygroundServerGetComponent },
       { path: 'server-post', component: comp.PlaygroundServerPostComponent },
-      { path: 'comp-com-parent-child', component: comp.PgOrgMainComponent }
+      { path: 'comp-com-parent-child', component: comp.PgOrgMainComponent },
+      { path: 'reflect', component: comp.PlaygroundReflectComponent }
     ]
   }];
 

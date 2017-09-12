@@ -1,8 +1,21 @@
+import { ConstructableProperty } from 'app/infrastructure/decorators';
+
+import { Address } from '.';
+
 export class Individual {
   public id: string | undefined = undefined;
   public firstName: string | undefined = undefined;
   public lastName: string | undefined = undefined;
 
+  @ConstructableProperty(Address)
+  public address: Address | undefined = undefined;
+
+  @ConstructableProperty(Address)
+  public address2: Address | undefined = undefined;
+
+  public get fullName(): string {
+    return `${this.firstName} ${this.lastName}`;
+  }
   public static createSome(): Individual[] {
     const result = [
       <Individual>{
@@ -25,4 +38,5 @@ export class Individual {
 
     return result;
   }
+
 }

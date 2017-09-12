@@ -9,11 +9,11 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: 'app/areas/home/infrastructure/home.module#HomeModule'
+    loadChildren: 'app/areas/home/home.module#HomeModule'
   },
   {
     path: 'playground',
-    loadChildren: 'app/areas/playground/infrastructure/playground.module#PlaygroundModule'
+    loadChildren: 'app/areas/playground/playground.module#PlaygroundModule'
   },
 ];
 
