@@ -4,7 +4,7 @@ import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
-export class MeadiatorService<T> {
+export class MediatorService<T> {
   private subject = new Subject<T>();
 
   public subscribe(next?: (value: T) => void, error?: (error: any) => void, complete?: () => void): Subscription {

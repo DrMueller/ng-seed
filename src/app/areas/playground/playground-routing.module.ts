@@ -20,7 +20,8 @@ const routes: Routes = [
       { path: 'server-get', component: comp.PlaygroundServerGetComponent },
       { path: 'server-post', component: comp.PlaygroundServerPostComponent },
       { path: 'comp-com-parent-child', component: comp.PgOrgMainComponent },
-      { path: 'reflect', component: comp.PlaygroundReflectComponent }
+      { path: 'reflect', component: comp.PlaygroundReflectComponent },
+      { path: 'grid-builder', component: comp.PlaygroundGridBuilderComponent }
     ]
   }];
 

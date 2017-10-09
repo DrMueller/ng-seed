@@ -1,4 +1,6 @@
-import { FormValidationService, RxFormBuilder, ValidatorFactoryService, FormWithValidation } from 'app/infrastructure/widgets/rx-forms';
+import {
+    FormValidationService, FormWithValidation, RxFormBuilder, ValidatorFactoryService
+} from 'app/infrastructure/shared-features/rx-forms';
 
 export class FormBuilder {
   public static buildForm(

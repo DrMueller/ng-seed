@@ -9,7 +9,6 @@ import { CTOR_PROP_KEY_PREFIX } from '../decorators';
 
 @Injectable()
 export class ObjectFactoryService {
-
   public create<T>(source: any, ctorFn: IParameterlessConstructor<T>): T {
     const result = new ctorFn();
     this.mapDefinedProperties(source, result);

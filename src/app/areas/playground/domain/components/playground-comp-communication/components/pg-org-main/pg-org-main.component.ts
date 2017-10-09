@@ -30,5 +30,4 @@ export class PgOrgMainComponent implements OnInit {
   public createCoreData(): OrganisationCore {
     return new OrganisationCore('DrMuellers Fake', 'Therpary');
   }
-
 }

@@ -1,15 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { AgGridModule } from 'ag-grid-angular/main';
 import { EditorModule, SharedModule } from 'primeng/primeng';
 
+import { RxFormsModule } from 'app/infrastructure/shared-features/rx-forms';
 import { CollapsibleCardModule } from 'app/infrastructure/widgets/collapsible-card';
 import { SelectModule } from 'app/infrastructure/widgets/select';
-import { RxFormsModule } from 'app/infrastructure/widgets/rx-forms';
 
 import * as comp from './domain/components';
 import * as serv from './domain/services';
-
 import { PlaygroundRoutingModule } from './playground-routing.module';
 
 @NgModule({
@@ -20,7 +20,10 @@ import { PlaygroundRoutingModule } from './playground-routing.module';
     SelectModule,
     EditorModule,
     SharedModule,
-    RxFormsModule
+    RxFormsModule,
+    AgGridModule.withComponents([
+      comp.PlaygroundGridBuilderComponent
+    ])
   ],
   declarations: [
     comp.PlaygroundComponent,
@@ -38,7 +41,8 @@ import { PlaygroundRoutingModule } from './playground-routing.module';
     comp.PgOrgAddressComponent,
     comp.PgOrgHqComponent,
     comp.PgOrgAddressComponent,
-    comp.PlaygroundReflectComponent
+    comp.PlaygroundReflectComponent,
+    comp.PlaygroundGridBuilderComponent
   ],
   providers: [
     serv.PlaygroundIndividualService

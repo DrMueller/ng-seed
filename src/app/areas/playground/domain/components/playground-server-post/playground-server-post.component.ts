@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as rx from 'app/infrastructure/widgets/rx-forms';
 import { ToastService } from 'app/infrastructure/core-services/toast';
+import * as rx from 'app/infrastructure/shared-features/rx-forms';
 
 import { Individual } from '../../models';
 import { PlaygroundIndividualService } from '../../services';
-
 import { FormBuilder } from './form.builder';
 
 @Component({

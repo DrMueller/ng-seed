@@ -1,26 +1,20 @@
-// external-core
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// third-parties
-import { AgGridModule } from 'ag-grid-angular/main';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-// app-modules
+import { AgGridModule } from 'ag-grid-angular/main';
+
+import { CoreServicesModule } from 'app/infrastructure/core-services';
+import { AgGridBuildingModule } from 'app/infrastructure/shared-features/ag-grid/ag-grid-building';
+import { RxFormsModule } from 'app/infrastructure/shared-features/rx-forms';
+
+import { AppComponent, AppRoutingModule } from '.';
 import { AppNavigationModule } from '../app-navigation';
 import { ErrorModule } from '../error';
-
-// core-services
-import { CoreServicesModule } from 'app/infrastructure/core-services';
-
-// widgets
-import { RxFormsModule } from 'app/infrastructure/widgets/rx-forms';
-
-// app
-import { AppComponent, AppRoutingModule } from '.';
 
 @NgModule({
   declarations: [
@@ -35,7 +29,8 @@ import { AppComponent, AppRoutingModule } from '.';
     CoreServicesModule,
     RxFormsModule.forRoot(),
     AppNavigationModule,
-    ErrorModule.forRoot()
+    ErrorModule.forRoot(),
+    AgGridBuildingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

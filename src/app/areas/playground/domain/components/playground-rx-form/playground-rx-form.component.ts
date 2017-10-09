@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as rx from 'app/infrastructure/widgets/rx-forms';
+import * as rx from 'app/infrastructure/shared-features/rx-forms';
 import { SelectConfiguration } from 'app/infrastructure/widgets/select';
 
-import { Individual, Country } from '../../models';
-
+import { Country, Individual } from '../../models';
 import { FormBuilder } from './form.builder';
 
 @Component({
