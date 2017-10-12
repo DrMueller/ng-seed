@@ -1,8 +1,6 @@
-import { ValidatorFn } from '@angular/forms';
-
-import { IValidationKeyErrorMapBuilder, IFormControlBuilder } from '../interfaces';
-import { ValidationError, ValidationKeyErrorMap, } from '../../form-validation';
+import { ValidationError, ValidationKeyErrorMap } from '../../form-validation';
 import { IValidator } from '../../validators';
+import { IFormControlBuilder, IValidationKeyErrorMapBuilder } from '../interfaces';
 
 export class ValidationKeyErrorMapBuilder implements IValidationKeyErrorMapBuilder {
   private _customErrorMessage: string | null = null;

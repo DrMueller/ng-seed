@@ -6,6 +6,8 @@ import * as v from './validator-implementations';
 
 @Injectable()
 export class ValidatorFactoryService {
+  constructor( @Inject(ValidatorProviderFactory.APP_VALIDATOR_TOKEN) private validators: IValidator[]) { }
+
   public minLength(minLength: number): IValidator {
     return this.getByKey(v.MinLengthValidator.key, minLength);
   }
@@ -21,8 +23,6 @@ export class ValidatorFactoryService {
   public required(): IValidator {
     return this.getByKey(v.RequiredValidator.key);
   }
-
-  constructor( @Inject(ValidatorProviderFactory.APP_VALIDATOR_TOKEN) private validators: IValidator[]) { }
 
   public getByKey(key: string, ...funcArgs: any[]): IValidator {
     const result = this.validators.find(f => f.key === key);

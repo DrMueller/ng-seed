@@ -1,7 +1,4 @@
-import { GridOptions } from 'ag-grid';
-
 import { RowSelectionType } from '../models';
-import { SetDataCallback } from '../types';
 import { IColumnDefinitionBuilderService } from './column-definition-builder-service.interface';
 import { IGridBuilderService } from './grid-builder-service.interface';
 

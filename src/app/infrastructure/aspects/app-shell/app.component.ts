@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 import { ToastConfigurationService } from 'app/infrastructure/core-services/toast/services';
 

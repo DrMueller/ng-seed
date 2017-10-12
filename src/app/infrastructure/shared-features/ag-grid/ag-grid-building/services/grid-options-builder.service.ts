@@ -1,11 +1,8 @@
 import { ColDef, GridOptions } from 'ag-grid';
 
-import { ObjectUtils } from 'app/infrastructure/utils';
-
 import { IColumnDefinitionBuilderService, IGridOptionsBuilderService } from '../interfaces';
 import { IGridBuilderService } from '../interfaces/grid-builder-service.interface';
 import { RowSelectionType } from '../models';
-import { SetDataCallback } from '../types';
 import { ColumnDefinitionBuilderService } from './column-definition-builder.service';
 import { RowSelectionTypeMappingHandler } from './handlers';
 
@@ -18,15 +15,12 @@ export class GridOptionsBuilderService implements IGridOptionsBuilderService {
   }
 
   public withAutoSizeColumns(doAutosize: boolean): IGridOptionsBuilderService {
-    this.gridOptions.onGridReady = this.sizeColumnsIfReady.bind(this);
-    this.gridOptions.onGridSizeChanged = this.sizeColumnsIfReady.bind(this);
-    return this;
-  }
-
-  private sizeColumnsIfReady(): void {
-    if (this.gridOptions.api) {
-      this.gridOptions.api.sizeColumnsToFit();
+    if (doAutosize) {
+      this.gridOptions.onGridReady = this.sizeColumnsIfReady.bind(this);
+      this.gridOptions.onGridSizeChanged = this.sizeColumnsIfReady.bind(this);
     }
+
+    return this;
   }
 
   public startBuildingColumnDefinition(headerName: string, fieldName: string): IColumnDefinitionBuilderService {
@@ -70,5 +64,11 @@ export class GridOptionsBuilderService implements IGridOptionsBuilderService {
     this.gridOptions.enableSorting = true;
     this.gridOptions.enableColResize = true;
     this.gridOptions.enableServerSideSorting = false;
+  }
+
+  private sizeColumnsIfReady(): void {
+    if (this.gridOptions.api) {
+      this.gridOptions.api.sizeColumnsToFit();
+    }
   }
 }

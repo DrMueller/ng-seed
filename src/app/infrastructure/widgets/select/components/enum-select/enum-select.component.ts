@@ -1,11 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { SelectItem } from 'primeng/primeng'
+import { SelectItem } from 'primeng/primeng';
 
-import { ObjectUtils, EnumUtils } from 'app/infrastructure/utils';
-
-import { SelectConfiguration } from '../../models';
+import { EnumUtils } from 'app/infrastructure/utils';
 
 @Component({
   selector: 'app-enum-select',
@@ -27,7 +25,7 @@ export class EnumSelectComponent implements ControlValueAccessor {
 
   @Input() public set enum(value: any) {
     this.selectItems = EnumUtils.getNamesAndValues(value).map(f => {
-      const selectItem = <SelectItem> {
+      const selectItem = <SelectItem>{
         label: f.name,
         value: f.value
       };
@@ -44,6 +42,19 @@ export class EnumSelectComponent implements ControlValueAccessor {
     this.broadcastChange();
   }
 
+  public writeValue(obj: any): void {
+    this.selectedSelectItemId = obj;
+  }
+
+  public registerOnChange(fn: any): void {
+    this._formChangeCallback = fn;
+    this.broadcastChange();
+  }
+
+  public registerOnTouched(): void { }
+
+  public setDisabledState(): void { }
+
   private _formChangeCallback = (_: any) => { };
 
   private broadcastChange(): void {
@@ -51,16 +62,5 @@ export class EnumSelectComponent implements ControlValueAccessor {
     this._formChangeCallback(this.selectedSelectItemId);
   }
 
-  writeValue(obj: any): void {
-    this.selectedSelectItemId = obj;
-  }
 
-  registerOnChange(fn: any): void {
-    this._formChangeCallback = fn;
-    this.broadcastChange();
-  }
-
-  registerOnTouched(fn: any): void { }
-
-  setDisabledState(isDisabled: boolean): void { }
 }

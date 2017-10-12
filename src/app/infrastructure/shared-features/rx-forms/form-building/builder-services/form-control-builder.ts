@@ -1,9 +1,11 @@
-import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
-import { ValidationKeyErrorMap, ValidationControlErrorsMap, ValidatedControl } from '../../form-validation';
-import { IFormControlBuilder, IRxFormBuilder, IValidationKeyErrorMapBuilder } from '../interfaces';
 import { RxFormBuilder, ValidationKeyErrorMapBuilder } from '.';
+import {
+  ValidatedControl, ValidationControlErrorsMap, ValidationKeyErrorMap
+} from '../../form-validation';
 import { IValidator } from '../../validators';
+import { IFormControlBuilder, IRxFormBuilder, IValidationKeyErrorMapBuilder } from '../interfaces';
 
 export class FormControlBuilder implements IFormControlBuilder {
   private validationErrorKeyMaps: ValidationKeyErrorMap[] = [];

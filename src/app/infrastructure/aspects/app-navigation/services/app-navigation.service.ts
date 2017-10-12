@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { AppNavigationEntry } from '../models';
 
 @Injectable()
 export class AppNavigationService {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   public getNavigationEntries(): AppNavigationEntry[] {
     const result = new Array<AppNavigationEntry>();

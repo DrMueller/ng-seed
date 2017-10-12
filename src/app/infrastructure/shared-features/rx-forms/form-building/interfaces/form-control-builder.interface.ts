@@ -1,5 +1,3 @@
-import { ValidatorFn } from '@angular/forms';
-
 import { IRxFormBuilder, IValidationKeyErrorMapBuilder } from '.';
 import { IValidator } from '../../validators';
 

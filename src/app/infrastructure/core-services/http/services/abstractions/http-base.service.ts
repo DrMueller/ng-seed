@@ -1,16 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-
-import { ObjectUtils } from 'app/infrastructure/utils';
-import { IParameterlessConstructor } from 'app/infrastructure/types/interfaces';
+import { Observable } from 'rxjs/Observable';
 
 import { ObjectFactoryService } from 'app/infrastructure/core-services/object-creation';
+import { IParameterlessConstructor } from 'app/infrastructure/types/interfaces';
+import { ObjectUtils } from 'app/infrastructure/utils';
 
-import { ContentType, ApiEndpoint } from '../../enums';
+import { ApiEndpoint, ContentType } from '../../enums';
 
 export abstract class HttpBaseService {
   public abstract get apiEndpoint(): ApiEndpoint;
@@ -45,7 +43,6 @@ export abstract class HttpBaseService {
     ctor: IParameterlessConstructor<T> | null = null,
     contentType: ContentType = ContentType.ApplicationJson): Promise<T> {
     const completeUrl = this.createCompleteUrl(relativeUrl);
-    const headers = new Headers();
 
     const requestOptions = this.createRequestOptions(contentType);
     return this.processResponse(this.http.post(completeUrl, body, requestOptions), ctor);
@@ -59,13 +56,12 @@ export abstract class HttpBaseService {
     return result;
   }
 
-  public putASync<T>(
+  public putAsync<T>(
     relativeUrl: string,
     body: any,
     ctor: IParameterlessConstructor<T> | null = null,
     contentType: ContentType = ContentType.ApplicationJson): Promise<T> {
     const completeUrl = this.createCompleteUrl(relativeUrl);
-    const headers = new Headers();
 
     const requestOptions = this.createRequestOptions(contentType);
     return this.processResponse(this.http.put(completeUrl, body, requestOptions), ctor);
@@ -111,7 +107,6 @@ export abstract class HttpBaseService {
       headers.append('Content-Type', this.mapContentType(contentType));
     }
 
-    const s = new URLSearchParams();
     const requestOptions = new RequestOptions({
       headers: headers,
       withCredentials: true,

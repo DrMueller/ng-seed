@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AgRendererComponent } from 'ag-grid-angular';
-import { ICellRendererParams, IAfterGuiAttachedParams, RowNode } from 'ag-grid/main';
+import { ICellRendererParams } from 'ag-grid/main';
 
 import { CellMediatorService } from '../../services';
 
@@ -13,20 +13,18 @@ import { CellMediatorService } from '../../services';
 export class AddButtonCellRendererComponent implements AgRendererComponent {
   private _params: ICellRendererParams;
 
-  refresh(params: any): void {
+  refresh(): void {
   }
 
   agInit(params: ICellRendererParams): void {
     this._params = params;
   }
 
-  afterGuiAttached(params?: IAfterGuiAttachedParams): void {
+  afterGuiAttached(): void {
   }
 
-  public cellClicked($event): void {
+  public cellClicked(): void {
     const cellMediatorService = <CellMediatorService>this._params.context;
     cellMediatorService.executeCallback(this._params.node);
   }
-
-  constructor() { }
 }

@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
-import {
-  FormValidationService,
-  FormWithValidation,
-  ValidationControlErrorsMap,
-  ValidatedForm,
-  ValidatedControl
-} from '../../form-validation';
-
-import { IRxFormBuilder, IFormControlBuilder, IFormWatchingBuilder } from '../interfaces';
 import { FormControlBuilder, FormWatchingBuilder } from '.';
+import {
+  FormValidationService, FormWithValidation, ValidatedControl, ValidatedForm,
+  ValidationControlErrorsMap
+} from '../../form-validation';
+import { IFormControlBuilder, IFormWatchingBuilder, IRxFormBuilder } from '../interfaces';
 
 @Injectable()
 export class RxFormBuilder implements IRxFormBuilder {

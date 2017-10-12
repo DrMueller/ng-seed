@@ -1,8 +1,5 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
-
-import { trigger, style, transition, state, animate, keyframes } from '@angular/animations';
-
-// import { animations } from './animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-collapsible-card',
@@ -40,16 +37,16 @@ import { trigger, style, transition, state, animate, keyframes } from '@angular/
   ]
 })
 export class CollapsibleCardComponent {
-  private _areDetailsVisible = true;
-
   @Output() public visibilityChanged = new EventEmitter<boolean>();
 
-  @Input() public set areDetailsVisible(data: boolean) {
-    this._areDetailsVisible = data;
-  }
+  private _areDetailsVisible = true;
 
   public get areDetailsVisible(): boolean {
     return this._areDetailsVisible;
+  }
+
+  @Input() public set areDetailsVisible(data: boolean) {
+    this._areDetailsVisible = data;
   }
 
   public toggleVisibility(): void {

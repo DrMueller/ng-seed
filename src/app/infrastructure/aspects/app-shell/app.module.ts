@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { AgGridModule } from 'ag-grid-angular/main';
 
 import { CoreServicesModule } from 'app/infrastructure/core-services';
 import { AgGridBuildingModule } from 'app/infrastructure/shared-features/ag-grid/ag-grid-building';

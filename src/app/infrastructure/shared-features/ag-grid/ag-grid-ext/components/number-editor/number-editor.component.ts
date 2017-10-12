@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AgEditorComponent } from 'ag-grid-angular';
-import { ICellEditorParams, IAfterGuiAttachedParams } from 'ag-grid/main';
+import { ICellEditorParams } from 'ag-grid/main';
 
 @Component({
   selector: 'app-number-editor',
@@ -35,9 +35,6 @@ export class NumberEditorComponent implements AgEditorComponent {
     this.value = params.value;
   }
 
-  afterGuiAttached(params?: IAfterGuiAttachedParams): void {
+  afterGuiAttached(): void {
   }
-
-  constructor() { }
-
 }

@@ -29,11 +29,11 @@ export class PlaygroundReflectComponent implements OnInit {
   }
 
   public get individualAddressCompleteStreet(): string {
-    return this.organisation!.individual!.address!.getCompleteStreet()
+    return this.organisation!.individual!.address!.getCompleteStreet();
   }
 
   public get individualFullName(): string {
-    return this.organisation!.individual!.fullName
+    return this.organisation!.individual!.fullName;
   }
 
   private createOrg(): Organisation {

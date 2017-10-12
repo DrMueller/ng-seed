@@ -23,7 +23,7 @@ export class RequiredValidator implements IValidator {
     return 'Value is required.';
   }
 
-  public initialize(...funcArgs: any[]) {
+  public initialize() {
   }
 
   public get key(): string {

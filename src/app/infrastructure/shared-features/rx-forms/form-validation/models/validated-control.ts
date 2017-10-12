@@ -1,4 +1,4 @@
-import { ValidationError, ControlValidationErrorContainer } from '.';
+import { ControlValidationErrorContainer, ValidationError } from '.';
 
 export class ValidatedControl {
   private _errorContainer = ControlValidationErrorContainer.nullObject;
@@ -7,11 +7,11 @@ export class ValidatedControl {
     return this._errorContainer;
   }
 
-  public static create(controlName: string, modelPropertyName: string | null = null) {
-    return new ValidatedControl(controlName, modelPropertyName);
+  constructor(public controlName: string, public modelPropertyName: string | null) {
   }
 
-  constructor(public controlName: string, public modelPropertyName: string | null) {
+  public static create(controlName: string, modelPropertyName: string | null = null) {
+    return new ValidatedControl(controlName, modelPropertyName);
   }
 
   public get hasErrors(): boolean {

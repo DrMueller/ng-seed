@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ErrorInformation } from '../../models';
 

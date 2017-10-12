@@ -1,9 +1,6 @@
 import { GridOptions } from 'ag-grid';
 
-import { Action } from 'app/infrastructure/types/callbacks';
-
 import { ObservableArrayProxyHandler, ObversableProxyHandler } from '../handlers';
-import { ArrayChangedCallback, PropertyChangedCallback } from '../types';
 import { ArrayChangeType } from './array-change-type.enum';
 
 export class Grid<T extends object> {
@@ -21,7 +18,11 @@ export class Grid<T extends object> {
     this.updateRowDataWhenGridReady();
   }
 
-  private gridReady(event?: any): void {
+  public gridEntryChanged(_target: T, _p: PropertyKey, _value: any, _receiver: any): void {
+    this.updateRowDataWhenGridReady();
+  }
+
+  private gridReady(): void {
     this._isGridReady = true;
   }
 
@@ -44,11 +45,7 @@ export class Grid<T extends object> {
     return proxy;
   }
 
-  private gridEntryChanged(target: T, p: PropertyKey, value: any, receiver: any): void {
-    this.updateRowDataWhenGridReady();
-  }
-
-  private gridArrayChanged(target: T, p: PropertyKey, value: any, changeType: ArrayChangeType): void {
+  private gridArrayChanged(_target: T, p: PropertyKey, value: any, changeType: ArrayChangeType): void {
     if (changeType === ArrayChangeType.EntryInserted) {
       this._entries[p] = this.createProxy(value);
     }

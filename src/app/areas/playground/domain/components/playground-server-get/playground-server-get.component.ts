@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PlaygroundIndividualService } from '../../services';
 import { Individual } from '../../models';
+import { PlaygroundIndividualService } from '../../services';
 
 @Component({
   selector: 'app-playground-server-get',
@@ -18,7 +18,6 @@ export class PlaygroundServerGetComponent implements OnInit {
   }
 
   private async getIndividualsAsync(): Promise<void> {
-    const relativeUrl = 'Individuals';
     this.individuals = await this.playgroundIndividualService.getIndividualsAsync();
   }
 }

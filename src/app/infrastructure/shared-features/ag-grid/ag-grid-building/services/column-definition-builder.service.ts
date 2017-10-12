@@ -1,14 +1,24 @@
 import { ColDef } from 'ag-grid';
 
 import {
-    IColumnDefinitionBuilderService, IColumnSizeBuilderService, IGridOptionsBuilderService
+  IColumnDefinitionBuilderService, IColumnSizeBuilderService, IGridOptionsBuilderService
 } from '../interfaces';
-import { RowSelectionType } from '../models';
 import { ColumnSizeBuilderService } from './column-size-builder.service';
-import { RowSelectionTypeMappingHandler } from './handlers';
 
 export class ColumnDefinitionBuilderService implements IColumnDefinitionBuilderService {
   private readonly _colDef: ColDef;
+
+  constructor(
+    private gridOptionsBuilderService: IGridOptionsBuilderService,
+    private colDefs: ColDef[],
+    headerName: string,
+    fieldName: string) {
+
+    this._colDef = <ColDef>{};
+    this._colDef.headerName = headerName;
+    this._colDef.field = fieldName;
+    this.setColDefDefaults();
+  }
 
   public withCellStyleObject(styleObj: {}): IColumnDefinitionBuilderService {
     this._colDef.cellStyle = styleObj;
@@ -38,18 +48,6 @@ export class ColumnDefinitionBuilderService implements IColumnDefinitionBuilderS
   public buildColumnDefinition(): IGridOptionsBuilderService {
     this.colDefs.push(this._colDef);
     return this.gridOptionsBuilderService;
-  }
-
-  constructor(
-    private gridOptionsBuilderService: IGridOptionsBuilderService,
-    private colDefs: ColDef[],
-    headerName: string,
-    fieldName: string) {
-
-    this._colDef = <ColDef>{};
-    this._colDef.headerName = headerName;
-    this._colDef.field = fieldName;
-    this.setColDefDefaults();
   }
 
   private setColDefDefaults(): void {

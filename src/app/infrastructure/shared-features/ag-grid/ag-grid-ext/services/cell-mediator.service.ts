@@ -4,7 +4,6 @@ import { RowNode } from 'ag-grid/main';
 
 import { CellMediatorCallback } from '../types';
 
-
 @Injectable()
 export class CellMediatorService {
   private _callback: CellMediatorCallback;
@@ -16,6 +15,4 @@ export class CellMediatorService {
   public executeCallback(rowNode: RowNode): void {
     this._callback(rowNode);
   }
-
-  constructor() { }
 }

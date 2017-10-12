@@ -7,7 +7,7 @@ export class ObservableArrayProxyHandler<TArray extends Array<any>> implements P
   constructor(private callback: ArrayChangedCallback<TArray>) {
   }
 
-  public set(target: TArray, p: PropertyKey, value: any, receiver: any): boolean {
+  public set(target: TArray, p: PropertyKey, value: any, _receiver: any): boolean {
     this._array = <TArray>target.map(x => Object.assign({}, x));
     target[p] = value;
     this.checkInsert(target, p, value);

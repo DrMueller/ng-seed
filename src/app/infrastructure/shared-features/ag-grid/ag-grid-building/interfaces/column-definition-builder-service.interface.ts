@@ -1,4 +1,3 @@
-import { RowSelectionType } from '../models';
 import { IColumnSizeBuilderService } from './column-size-builder-service.interface';
 import { IGridOptionsBuilderService } from './grid-options-builder-service.interface';
 

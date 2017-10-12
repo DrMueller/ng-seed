@@ -15,7 +15,4 @@ export class ControlValidationErrorContainer {
   public setValidationErrors(validationErrors: ValidationError[]) {
     this._validationErrors = validationErrors;
   }
-
-  constructor() {
-  }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { SelectItem } from 'primeng/primeng'
+import { SelectItem } from 'primeng/primeng';
 
 import { ObjectUtils } from 'app/infrastructure/utils';
 
@@ -21,13 +21,13 @@ import { SelectConfiguration } from '../../models';
 })
 
 export class SelectComponent<T> implements ControlValueAccessor {
-  private _businessItems: T[];
-  private _configuration: SelectConfiguration;
-
   public selectedItemId: any;
   public selectItems: SelectItem[];
 
   @Output() public itemChanged = new EventEmitter<T>();
+
+  private _businessItems: T[];
+  private _configuration: SelectConfiguration;
 
   @Input() public set items(value: T[]) {
     this._businessItems = value;
@@ -44,11 +44,38 @@ export class SelectComponent<T> implements ControlValueAccessor {
       this.selectedItemId = value![this._configuration.idPropertyName];
     } else {
       this.selectedItemId = null;
-    };
+    }
   }
 
   public onItemChanged() {
     this.broadcastChange();
+  }
+
+  public writeValue(obj: any): void {
+    if (ObjectUtils.isNullOrUndefined(obj)) {
+      this.selectedItemId = this.selectItems[0].value;
+    } else {
+      this.selectedItemId = obj[this._configuration.idPropertyName];
+    }
+  }
+
+  public registerOnChange(fn: any): void {
+    this._formChangeCallback = fn;
+    this.broadcastChange();
+  }
+
+  public registerOnTouched(): void { }
+
+  public setDisabledState(): void { }
+
+  private setItemsIfReady(): void {
+    if (this._configuration) {
+      if (this._businessItems) {
+        this.selectItems = this._businessItems.map(f => this.mapToSelectItem(f));
+      } else {
+        this.selectItems = [];
+      }
+    }
   }
 
   private _formChangeCallback = (_: any) => { };
@@ -69,33 +96,6 @@ export class SelectComponent<T> implements ControlValueAccessor {
     }
 
     return businessItem;
-  }
-
-  writeValue(obj: any): void {
-    if (ObjectUtils.isNullOrUndefined(obj)) {
-      this.selectedItemId = this.selectItems[0].value;
-    } else {
-      this.selectedItemId = obj[this._configuration.idPropertyName];
-    }
-  }
-
-  registerOnChange(fn: any): void {
-    this._formChangeCallback = fn;
-    this.broadcastChange();
-  }
-
-  registerOnTouched(fn: any): void { }
-
-  setDisabledState(isDisabled: boolean): void { }
-
-  private setItemsIfReady(): void {
-    if (this._configuration) {
-      if (this._businessItems) {
-        this.selectItems = this._businessItems.map(f => this.mapToSelectItem(f));
-      } else {
-        this.selectItems = [];
-      }
-    }
   }
 
   private mapToSelectItem(item: T): SelectItem {

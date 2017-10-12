@@ -8,6 +8,13 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictNullChecks": true,
+    "no-unused-variable": [true, {"ignore-pattern": "^_"}], // https://github.com/palantir/tslint/issues/1337
+    "noUnusedLocals": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+    "noStrictGenericChecks": false,
     "target": "es5",
     "baseUrl": "./src",
     "skipLibCheck": true,

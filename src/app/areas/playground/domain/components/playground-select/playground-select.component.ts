@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SelectComponent, SelectConfiguration } from 'app/infrastructure/widgets/select';
+import { SelectConfiguration } from 'app/infrastructure/widgets/select';
 
 import { Individual } from '../../models';
-
 
 @Component({
   selector: 'app-playground-select',

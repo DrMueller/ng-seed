@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as rx from 'app/infrastructure/shared-features/rx-forms';
 import { SelectConfiguration } from 'app/infrastructure/widgets/select';
 
-import { Country, Individual } from '../../models';
+import { Individual } from '../../models';
 import { FormBuilder } from './form.builder';
 
 @Component({

@@ -1,1 +1,1 @@
-export * from './add-button-cell-renderer.component'
+export * from './add-button-cell-renderer.component';

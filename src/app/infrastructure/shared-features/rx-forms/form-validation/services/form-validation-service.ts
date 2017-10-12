@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 
-import {
-  ValidatedForm,
-  ValidatedControl,
-  ValidationError,
-  ControlValidationErrorContainer,
-  ValidationControlErrorsMap
-} from '../';
+import { ValidatedForm, ValidationControlErrorsMap, ValidationError } from '../';
 
 @Injectable()
 export class FormValidationService {
@@ -45,8 +39,10 @@ export class FormValidationService {
 
   private getControlErrorKeys(control: AbstractControl): string[] | undefined {
     if ((control.touched || control.dirty) && !control.valid) {
-      const controlErrors = Object.keys(control.errors);
+      const controlErrors = Object.keys(control.errors!);
       return controlErrors;
-    };
+    }
+
+    return undefined;
   }
 }
