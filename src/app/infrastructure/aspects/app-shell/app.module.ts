@@ -9,9 +9,10 @@ import { CoreServicesModule } from 'app/infrastructure/core-services';
 import { AgGridBuildingModule } from 'app/infrastructure/shared-features/ag-grid/ag-grid-building';
 import { RxFormsModule } from 'app/infrastructure/shared-features/rx-forms';
 
-import { AppComponent, AppRoutingModule } from '.';
 import { AppNavigationModule } from '../app-navigation';
 import { ErrorModule } from '../error';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [

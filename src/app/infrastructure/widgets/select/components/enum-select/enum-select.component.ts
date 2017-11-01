@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { SelectItem } from 'primeng/primeng';
 
-import { EnumUtils } from 'app/infrastructure/utils';
+import { EnumService } from 'app/infrastructure/core-services/enums';
 
 @Component({
   selector: 'app-enum-select',
@@ -17,17 +17,24 @@ import { EnumUtils } from 'app/infrastructure/utils';
     }
   ]
 })
+
 export class EnumSelectComponent implements ControlValueAccessor {
-  public selectedSelectItemId: number;
-  public selectItems: SelectItem[];
 
   @Output() public itemChanged = new EventEmitter<any>();
+  public selectItems: SelectItem[];
+  public selectedSelectItemId: number;
 
-  @Input() public set enum(value: any) {
-    this.selectItems = EnumUtils.getNamesAndValues(value).map(f => {
+  public constructor(private enumService: EnumService) {
+  }
+
+
+  @Input() public set enumType(enumType: any) {
+    const enumKeyValues = this.enumService.getKeyValues(enumType);
+
+    this.selectItems = enumKeyValues.map(f => {
       const selectItem = <SelectItem>{
-        label: f.name,
-        value: f.value
+        label: f.value,
+        value: f.key
       };
 
       return selectItem;
@@ -42,10 +49,6 @@ export class EnumSelectComponent implements ControlValueAccessor {
     this.broadcastChange();
   }
 
-  public writeValue(obj: any): void {
-    this.selectedSelectItemId = obj;
-  }
-
   public registerOnChange(fn: any): void {
     this._formChangeCallback = fn;
     this.broadcastChange();
@@ -55,12 +58,14 @@ export class EnumSelectComponent implements ControlValueAccessor {
 
   public setDisabledState(): void { }
 
-  private _formChangeCallback = (_: any) => { };
+  public writeValue(obj: any): void {
+    this.selectedSelectItemId = obj;
+  }
 
   private broadcastChange(): void {
     this.itemChanged.emit(this.selectedSelectItemId);
     this._formChangeCallback(this.selectedSelectItemId);
   }
 
-
+  private _formChangeCallback = (_: any) => { };
 }

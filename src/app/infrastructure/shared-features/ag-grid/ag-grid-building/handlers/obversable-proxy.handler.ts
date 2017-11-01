@@ -1,8 +1,8 @@
-import { PropertyChangedCallback } from '../types';
+import { PropertyChangedCallback } from '../types/property-changed.callback';
 
 export class ObversableProxyHandler<T extends object> implements ProxyHandler<T> {
 
-  constructor(private callback: PropertyChangedCallback<T>) {
+  public constructor(private callback: PropertyChangedCallback<T>) {
   }
 
   public set(target: T, p: PropertyKey, value: any, receiver: any): boolean {

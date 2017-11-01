@@ -4,5 +4,5 @@ export interface IValidator {
   key: string;
   defaultErrorMessage: string;
   createFunc(): ValidatorFn;
-  initialize(...funcArgs: any[]);
+  initialize(...funcArgs: any[]): void;
 }

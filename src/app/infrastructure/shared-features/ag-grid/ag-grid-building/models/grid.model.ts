@@ -1,24 +1,39 @@
 import { GridOptions } from 'ag-grid';
 
-import { ObservableArrayProxyHandler, ObversableProxyHandler } from '../handlers';
+import { ObservableArrayProxyHandler } from '../handlers/observable-array-proxy.handler';
+import { ObversableProxyHandler } from '../handlers/obversable-proxy.handler';
 import { ArrayChangeType } from './array-change-type.enum';
 
 export class Grid<T extends object> {
-  private readonly _entries: T[];
   private _isGridReady = false;
+  private readonly _entries: T[];
 
-  public get entries(): T[] {
-    return this._entries;
-  }
-
-  constructor(public gridOptions: GridOptions) {
+  public constructor(public gridOptions: GridOptions) {
     gridOptions.onGridReady = this.gridReady.bind(this);
     const proxyHandler = new ObservableArrayProxyHandler<T[]>(this.gridArrayChanged.bind(this));
     this._entries = new Proxy(new Array<T>(), proxyHandler);
     this.updateRowDataWhenGridReady();
   }
 
+  public get entries(): T[] {
+    return this._entries;
+  }
+
   public gridEntryChanged(_target: T, _p: PropertyKey, _value: any, _receiver: any): void {
+    this.updateRowDataWhenGridReady();
+  }
+
+  private createProxy(entry: T): T {
+    const entryProxyHandler = new ObversableProxyHandler<T>(this.gridEntryChanged.bind(this));
+    const proxy = new Proxy(entry, entryProxyHandler);
+    return proxy;
+  }
+
+  private gridArrayChanged(_target: T, p: PropertyKey, value: any, changeType: ArrayChangeType): void {
+    if (changeType === ArrayChangeType.EntryInserted) {
+      this._entries[p] = this.createProxy(value);
+    }
+
     this.updateRowDataWhenGridReady();
   }
 
@@ -37,19 +52,5 @@ export class Grid<T extends object> {
         }
       }, 100);
     }
-  }
-
-  private createProxy(entry: T): T {
-    const entryProxyHandler = new ObversableProxyHandler<T>(this.gridEntryChanged.bind(this));
-    const proxy = new Proxy(entry, entryProxyHandler);
-    return proxy;
-  }
-
-  private gridArrayChanged(_target: T, p: PropertyKey, value: any, changeType: ArrayChangeType): void {
-    if (changeType === ArrayChangeType.EntryInserted) {
-      this._entries[p] = this.createProxy(value);
-    }
-
-    this.updateRowDataWhenGridReady();
   }
 }

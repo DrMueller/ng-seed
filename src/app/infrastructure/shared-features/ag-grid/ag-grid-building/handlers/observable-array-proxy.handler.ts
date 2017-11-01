@@ -1,10 +1,10 @@
+import { ArrayChangeType } from '../models/array-change-type.enum';
 import { ArrayChangedCallback } from '../types';
-import { ArrayChangeType } from '../models';
 
 export class ObservableArrayProxyHandler<TArray extends Array<any>> implements ProxyHandler<TArray>  {
   private _array: TArray;
 
-  constructor(private callback: ArrayChangedCallback<TArray>) {
+  public constructor(private callback: ArrayChangedCallback<TArray>) {
   }
 
   public set(target: TArray, p: PropertyKey, value: any, _receiver: any): boolean {

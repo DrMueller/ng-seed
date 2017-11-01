@@ -36,17 +36,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
       ])
   ]
 })
+
 export class CollapsibleCardComponent {
   @Output() public visibilityChanged = new EventEmitter<boolean>();
 
   private _areDetailsVisible = true;
 
-  public get areDetailsVisible(): boolean {
-    return this._areDetailsVisible;
-  }
-
   @Input() public set areDetailsVisible(data: boolean) {
     this._areDetailsVisible = data;
+  }
+
+  public get areDetailsVisible(): boolean {
+    return this._areDetailsVisible;
   }
 
   public toggleVisibility(): void {

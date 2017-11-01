@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 
-import { ObjectUtils } from '.';
+import { ObjectUtils } from './object.utils';
 
 export class DateUtils {
   private static readonly DefaultDateTimeFormat = 'DD.MM.YYYY HH:mm';

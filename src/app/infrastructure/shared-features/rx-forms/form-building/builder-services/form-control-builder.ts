@@ -1,19 +1,20 @@
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { RxFormBuilder, ValidationKeyErrorMapBuilder } from '.';
 import {
   ValidatedControl, ValidationControlErrorsMap, ValidationKeyErrorMap
 } from '../../form-validation';
 import { IValidator } from '../../validators';
 import { IFormControlBuilder, IRxFormBuilder, IValidationKeyErrorMapBuilder } from '../interfaces';
+import { RxFormBuilder } from './rx-form-builder';
+import { ValidationKeyErrorMapBuilder } from './validation-key-error-map-builder';
 
 export class FormControlBuilder implements IFormControlBuilder {
-  private validationErrorKeyMaps: ValidationKeyErrorMap[] = [];
-  private validators: IValidator[] = [];
   private defaultValue: any = null;
   private modelPropertyName: string | null = null;
+  private validationErrorKeyMaps: ValidationKeyErrorMap[] = [];
+  private validators: IValidator[] = [];
 
-  constructor(
+  public constructor(
     private controlName: string,
     private controlErrorsMaps: ValidationControlErrorsMap[],
     private formGroup: FormGroup,
@@ -44,19 +45,6 @@ export class FormControlBuilder implements IFormControlBuilder {
     return validationRuleBuilder;
   }
 
-  private createAndPushValidationErrorMap(): void {
-    const va = new ValidationControlErrorsMap(
-      this.controlName,
-      this.validationErrorKeyMaps);
-
-    this.controlErrorsMaps.push(va);
-  }
-
-  private createAndAddValidatedControl(): void {
-    const validatedControl = new ValidatedControl(this.controlName, this.modelPropertyName);
-    this.validatedControls.push(validatedControl);
-  }
-
   private createAndAddFormControl(): void {
     const formControl = new FormControl();
     formControl.setValue(this.defaultValue, {
@@ -67,5 +55,18 @@ export class FormControlBuilder implements IFormControlBuilder {
     formControl.setValidators(validatorFunctions);
 
     this.formGroup.addControl(this.controlName, formControl);
+  }
+
+  private createAndAddValidatedControl(): void {
+    const validatedControl = new ValidatedControl(this.controlName, this.modelPropertyName);
+    this.validatedControls.push(validatedControl);
+  }
+
+  private createAndPushValidationErrorMap(): void {
+    const va = new ValidationControlErrorsMap(
+      this.controlName,
+      this.validationErrorKeyMaps);
+
+    this.controlErrorsMaps.push(va);
   }
 }

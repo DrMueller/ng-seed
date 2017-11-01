@@ -1,23 +1,15 @@
 import { Injectable } from '@angular/core';
 
 import { ErrorInformation } from '../models';
-import { ErrorRegistrationService } from '.';
+import { ErrorRegistrationService } from './error-registration.service';
 
 @Injectable()
 export class ErrorDispatcherService {
 
-  constructor(private errorRegistrationService: ErrorRegistrationService) { }
+  public constructor(private errorRegistrationService: ErrorRegistrationService) { }
 
   public dispatchError(error: Error): void {
     this.prepareAndDispatchErrorInformation(error);
-  }
-
-  private prepareAndDispatchErrorInformation(error: Error) {
-    const errInfo = this.createErrorInformation(error);
-
-    this.errorRegistrationService.registeredErrorCallbacks.forEach(cb => {
-      cb(errInfo);
-    });
   }
 
   private createErrorInformation(error: Error): ErrorInformation {
@@ -26,6 +18,14 @@ export class ErrorDispatcherService {
     const errorName = error.name;
     const result = new ErrorInformation(errorName, errorMessage);
     return result;
+  }
+
+  private prepareAndDispatchErrorInformation(error: Error) {
+    const errInfo = this.createErrorInformation(error);
+
+    this.errorRegistrationService.registeredErrorCallbacks.forEach(cb => {
+      cb(errInfo);
+    });
   }
 
   private unwrapError(error: any): Error {

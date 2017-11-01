@@ -1,17 +1,17 @@
 import { ConstructableProperty } from 'app/infrastructure/core-services/object-creation';
 
-import { Address } from '.';
+import { Address } from './address.model';
 
 export class Individual {
-  public id: string | undefined = undefined;
-  public firstName: string | undefined = undefined;
-  public lastName: string | undefined = undefined;
-
-  @ConstructableProperty(Address)
-  public address: Address | undefined = undefined;
 
   @ConstructableProperty(Address)
   public address2: Address | undefined = undefined;
+
+  @ConstructableProperty(Address)
+  public address: Address | undefined = undefined;
+  public firstName: string | undefined = undefined;
+  public id: string | undefined = undefined;
+  public lastName: string | undefined = undefined;
 
   public get fullName(): string {
     return `${this.firstName} ${this.lastName}`;

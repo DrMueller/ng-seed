@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EnumSelectComponent } from './enum-select.component';
@@ -8,9 +9,12 @@ describe('EnumSelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EnumSelectComponent ]
+      declarations: [EnumSelectComponent],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
+import { EnumService } from './enums';
 import { EnvironmentService } from './environment';
-import { ToastService, ToastConfigurationService } from './toast/services';
 import { EventDispatcherService } from './event-dispatching';
 import * as http from './http';
 import { ObjectFactoryService } from './object-creation';
+import { ToastConfigurationService, ToastService } from './toast/services';
 
 // Not adding the mediators as providers here, since they should be used in the components
 
@@ -24,7 +25,8 @@ import { ObjectFactoryService } from './object-creation';
     ToastConfigurationService,
     EventDispatcherService,
     http.PlaygroundHttpService,
-    ObjectFactoryService
+    ObjectFactoryService,
+    EnumService
   ]
 })
 export class CoreServicesModule { }
