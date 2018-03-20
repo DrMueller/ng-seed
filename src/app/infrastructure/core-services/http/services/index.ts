@@ -1,1 +1,1 @@
-export * from './playground-http.service';
+export * from './http-base.service';

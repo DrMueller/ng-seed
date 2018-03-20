@@ -1,0 +1,17 @@
+<div>
+  <div class="ls-overview__commandbuttons">
+    <div class="row">
+      <button class="btn btn-primary" (click)="createLearningSessionClicked()">Create Session</button>
+      <button class="btn btn-primary" (click)="editLearningSessionClicked()">Edit Session</button>
+      <button class="btn btn-danger" (click)="deleteLearningSessionClicked()">Delete Session</button>
+      <button class="btn btn-secondary" (click)="reloadLearningSessionClicked()">Reload Session</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="grid">
+  <div class="row">
+    <ag-grid-angular class="ag-dark ls-overview__aggrid" [gridOptions]="grid.gridOptions">
+    </ag-grid-angular>
+  </div>
+</div>

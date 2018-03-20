@@ -7,7 +7,6 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { EnumService } from './enums';
 import { EnvironmentService } from './environment';
 import { EventDispatcherService } from './event-dispatching';
-import * as http from './http';
 import { ObjectFactoryService } from './object-creation';
 import { ToastConfigurationService, ToastService } from './toast/services';
 
@@ -24,7 +23,6 @@ import { ToastConfigurationService, ToastService } from './toast/services';
     ToastService,
     ToastConfigurationService,
     EventDispatcherService,
-    http.PlaygroundHttpService,
     ObjectFactoryService,
     EnumService
   ]

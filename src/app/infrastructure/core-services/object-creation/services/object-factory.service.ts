@@ -2,20 +2,14 @@
 
 import { Injectable } from '@angular/core';
 
-import { ObjectUtils } from 'app/infrastructure/utils';
 import { IParameterlessConstructor } from 'app/infrastructure/types/interfaces';
+import { ObjectUtils } from 'app/infrastructure/utils';
 
 import { CTOR_PROP_KEY_PREFIX } from '../decorators';
 
+
 @Injectable()
 export class ObjectFactoryService {
-  public create<T>(source: any, ctorFn: IParameterlessConstructor<T>): T {
-    const result = new ctorFn();
-    this.mapDefinedProperties(source, result);
-
-    return result;
-  }
-
   public createArray<T>(sourceCollection: any[], ctorFn: IParameterlessConstructor<T>): T[] {
     const result = new Array<T>();
     sourceCollection.forEach(sourceItem => {
@@ -27,15 +21,11 @@ export class ObjectFactoryService {
     return result;
   }
 
-  private mapDefinedProperties<T>(source: Object, target: T): void {
-    const targetProperties = Object.getOwnPropertyNames(target);
+  public create<T>(source: any, ctorFn: IParameterlessConstructor<T>): T {
+    const result = new ctorFn();
+    this.mapDefinedProperties(source, result);
 
-    targetProperties.forEach(targetPropKey => {
-      if (source.hasOwnProperty(targetPropKey)) {
-        const sourceProp = this.getSourceProperty(target, source, targetPropKey);
-        target[targetPropKey] = sourceProp;
-      }
-    });
+    return result;
   }
 
   private getSourceProperty<T>(target: T, source: any, targetPropKey: string): any {
@@ -62,6 +52,15 @@ export class ObjectFactoryService {
       this.mapDefinedProperties(sourceProp, targetObj);
       return targetObj;
     }
+  }
+
+  private mapDefinedProperties<T>(source: Object, target: T): void {
+    const sourceProperties = Object.getOwnPropertyNames(source);
+
+    sourceProperties.forEach(sourcePropKey => {
+      const sourceProp = this.getSourceProperty(target, source, sourcePropKey);
+      target[sourcePropKey] = sourceProp;
+    });
   }
 
 }

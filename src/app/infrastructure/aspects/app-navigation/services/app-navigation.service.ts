@@ -10,8 +10,8 @@ export class AppNavigationService {
   public getNavigationEntries(): AppNavigationEntry[] {
     const result = new Array<AppNavigationEntry>();
 
-    result.push(new AppNavigationEntry('Home', '/home'));
-    result.push(new AppNavigationEntry('Playground', '/playground'));
+    result.push(new AppNavigationEntry('Facts', '/facts'));
+    result.push(new AppNavigationEntry('Learning sessions', '/learningSessions'));
 
     return result;
   }
