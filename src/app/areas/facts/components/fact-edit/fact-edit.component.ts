@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'app/infrastructure/core-services/toast';
 import * as rx from 'app/infrastructure/shared-features/rx-forms';
 
-import { Fact, FactDataService } from 'app/shared';
-
 import { FactsNavigationService } from '../../app-services';
+import { FactsDataService } from '../../domain-services';
+import { Fact } from '../../models';
 import { FormBuilder } from './handlers';
 
 @Component({
@@ -15,9 +15,9 @@ import { FormBuilder } from './handlers';
   styleUrls: ['./fact-edit.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-
 export class FactEditComponent implements OnInit {
-  private fact: Fact;
+
+  public fact: Fact;
   public dataForm: rx.FormWithValidation;
 
   public constructor(private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class FactEditComponent implements OnInit {
     private validatorFactory: rx.ValidatorFactoryService,
     private toastService: ToastService,
     private navigationService: FactsNavigationService,
-    private factDataService: FactDataService
+    private factsDataService: FactsDataService
   ) { }
 
   public ngOnInit() {
@@ -48,7 +48,7 @@ export class FactEditComponent implements OnInit {
   public async saveFactAsync(): Promise<void> {
     this.dataForm.setModelFromControls(this.fact);
 
-    await this.factDataService.saveFactAsync(this.fact);
+    await this.factsDataService.saveFactAsync(this.fact);
     this.toastService.showSuccessToast('Fact saved.');
     this.navigationService.navigateToOverview();
   }

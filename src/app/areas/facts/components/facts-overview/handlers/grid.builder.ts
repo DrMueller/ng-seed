@@ -1,8 +1,8 @@
 import {
-  Grid, GridBuilderService, RowSelectionType
+    Grid, GridBuilderService, RowSelectionType
 } from 'app/infrastructure/shared-features/ag-grid/ag-grid-building';
 
-import { Fact } from 'app/shared';
+import { Fact } from '../../../models';
 
 export class GridBuilder {
   public static buildGrid(gridBuilder: GridBuilderService): Grid<Fact> {

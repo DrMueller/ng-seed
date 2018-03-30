@@ -3,18 +3,13 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class LearningSessionsNavigationService {
-  public constructor(private router: Router) { }
+  public navigateToEdit(learningSessionId: string): void {
+    this.router.navigate(['/learning-sessions', learningSessionId]);
+  }
 
   public navigateToOverview(): void {
-    this.router.navigate(['/learningSessions']);
+    this.router.navigate(['/learning-sessions']);
   }
 
-  public navigateToEdit(learningSessionId: string): void {
-    this.router.navigate(['/learningSessions', learningSessionId]);
-  }
-
-  public navigateToRun(learningSessionId: string): void {
-    this.router.navigate(['/learningSessions', learningSessionId, 'run']);
-
-  }
+  constructor(private router: Router) { }
 }

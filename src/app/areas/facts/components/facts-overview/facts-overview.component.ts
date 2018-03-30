@@ -4,10 +4,10 @@ import {
   Grid, GridBuilderService
 } from 'app/infrastructure/shared-features/ag-grid/ag-grid-building';
 
-import { Fact, FactDataService } from 'app/shared';
-
 import { ToastService } from 'app/infrastructure/core-services/toast';
+import { Fact } from '../../models';
 import { FactsNavigationService } from '../../app-services';
+import { FactsDataService } from '../../domain-services';
 import { GridBuilder } from './handlers';
 
 @Component({
@@ -21,7 +21,7 @@ export class FactsOverviewComponent implements OnInit {
 
   public constructor(
     private toastService: ToastService,
-    private factDataService: FactDataService,
+    private factsDataService: FactsDataService,
     private navigationService: FactsNavigationService,
     private gridBuilder: GridBuilderService) { }
 
@@ -34,7 +34,7 @@ export class FactsOverviewComponent implements OnInit {
 
   private async loadGridDataAsync(): Promise<void> {
     this.toastService.showInfoToast('Loading Facts..');
-    var facts = await this.factDataService.loadAllFactsAsync();
+    var facts = await this.factsDataService.loadAllFactsAsync();
 
     this.grid.entries.splice(0, this.grid.entries.length);
     this.grid.entries.push(...facts);
@@ -52,7 +52,7 @@ export class FactsOverviewComponent implements OnInit {
     const selectedNodes = this.grid.gridOptions.api!.getSelectedNodes();
     selectedNodes.forEach(d => {
       const selectedFact = <Fact>d.data;
-      this.factDataService.deleteFactAsync(selectedFact.id!);
+      this.factsDataService.deleteFactAsync(selectedFact.id!);
     });
 
     this.grid.gridOptions.api!.removeItems(selectedNodes);

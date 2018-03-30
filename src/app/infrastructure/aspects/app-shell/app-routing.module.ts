@@ -11,10 +11,10 @@ const routes: Routes = [
     path: 'facts',
     loadChildren: 'app/areas/facts/facts.module#FactsModule'
   },
-  {
-    path: 'learningSessions',
-    loadChildren: 'app/areas/learning-sessions/learning-sessions.module#LearningSessionsModule'
-  },
+  // {
+  //   path: 'learningSessions',
+  //   loadChildren: 'app/areas/learning-sessions/learning-sessions.module#LearningSessionsModule'
+  // },
 ];
 
 @NgModule({

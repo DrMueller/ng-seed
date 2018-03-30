@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
-
 import { ObjectUtils } from 'app/infrastructure/utils';
 
 import { LearningSessionsHttpService } from '../app-services';
-import { LearningSessionEdit } from '../models';
+import { LearningSession } from '../models';
 
 @Injectable()
-export class LearningSessionDataService {
-  private readonly relativeUrl = 'learningSessions';
+export class LearningSessionsDataService {
+  private readonly relativeUrl = 'learning-sessions';
 
-  public constructor(private httpService: LearningSessionsHttpService) { }
-
-  public async saveLearningSessionAsync(fact: LearningSessionEdit): Promise<void> {
+  public async saveLearningSessionAsync(fact: LearningSession): Promise<void> {
     if (ObjectUtils.isNullOrUndefined(fact.id)) {
-      this.httpService.postAsync(this.relativeUrl, fact);
-    } else {
       this.httpService.putAsync(this.relativeUrl, fact);
+    } else {
+      this.httpService.postAsync(this.relativeUrl, fact);
     }
+  }
+
+  public loadAllLearningSessionsAsync(): Promise<LearningSession[]> {
+    return this.httpService.getArrayAsync(this.relativeUrl, LearningSession);
+  }
+
+  public loadLearningSessionByIdAsync(id: string): Promise<LearningSession> {
+    const url = this.relativeUrl + '/' + id;
+    return this.httpService.getAsync(url, LearningSession);
   }
 
   public deleteLearningSessionAsync(id: string): Promise<void> {
@@ -24,12 +30,5 @@ export class LearningSessionDataService {
     return this.httpService.deleteAsync(url);
   }
 
-  public loadAllLearningSessionsAsync(): Promise<LearningSessionEdit[]> {
-    return this.httpService.getArrayAsync(this.relativeUrl, LearningSessionEdit);
-  }
-
-  public loadLearningSessionEditByIdAsync(id: string): Promise<LearningSessionEdit> {
-    const url = this.relativeUrl + '/' + id + '/Edit';
-    return this.httpService.getAsync(url, LearningSessionEdit);
-  }
+  constructor(private httpService: LearningSessionsHttpService) { }
 }
