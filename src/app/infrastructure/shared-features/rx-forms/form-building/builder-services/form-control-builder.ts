@@ -53,6 +53,7 @@ export class FormControlBuilder implements IFormControlBuilder {
 
     const validatorFunctions = this.validators.map(f => f.createFunc());
     formControl.setValidators(validatorFunctions);
+
     this.formGroup.addControl(this.controlName, formControl);
   }
 

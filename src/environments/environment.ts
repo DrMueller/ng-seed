@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:2848/api'
+  microserviceBaseUrl: 'http://localhost:2215/api'
 };

@@ -4,17 +4,17 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/facts',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
-    path: 'facts',
-    loadChildren: 'app/areas/facts/facts.module#FactsModule'
+    path: 'home',
+    loadChildren: 'app/areas/home/home.module#HomeModule'
   },
-  // {
-  //   path: 'learningSessions',
-  //   loadChildren: 'app/areas/learning-sessions/learning-sessions.module#LearningSessionsModule'
-  // },
+  {
+    path: 'playground',
+    loadChildren: 'app/areas/playground/playground.module#PlaygroundModule'
+  },
 ];
 
 @NgModule({

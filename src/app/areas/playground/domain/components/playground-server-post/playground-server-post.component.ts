@@ -31,7 +31,7 @@ export class PlaygroundServerPostComponent implements OnInit {
     const individual = new Individual();
     this.dataForm.setModelFromControls(individual);
 
-    const createdIndividual = await this.playgroundIndividualService.postIndividualAsync();
+    const createdIndividual = await this.playgroundIndividualService.postIndividualAsync(individual);
     const successInfo = `Individual created with ID ${createdIndividual.id}`;
     this.toastService.showSuccessToast(successInfo, 'Individual created!');
   }
