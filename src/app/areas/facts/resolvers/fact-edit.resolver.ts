@@ -4,14 +4,13 @@ import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 
-import { Fact } from '../models';
-import { FactsDataService } from '../domain-services';
+import { Fact, FactDataService } from 'app/shared';
 
 @Injectable()
 export class FactEditResolver implements Resolve<Promise<Fact>> {
 
   public constructor(
-    private factsDataService: FactsDataService) { }
+    private factDataService: FactDataService) { }
 
   public async resolve(route: ActivatedRouteSnapshot): Promise<Fact> {
     var factId = route.paramMap.get('factId');
@@ -19,7 +18,7 @@ export class FactEditResolver implements Resolve<Promise<Fact>> {
       return Promise.resolve(new Fact());
     }
 
-    var fact = await this.factsDataService.loadFactbyIdAsync(factId);
+    var fact = await this.factDataService.loadFactbyIdAsync(factId);
     return fact;
   }
 }

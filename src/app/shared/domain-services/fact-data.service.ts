@@ -6,13 +6,13 @@ import { FactsHttpService } from '../app-services';
 import { Fact } from '../models';
 
 @Injectable()
-export class FactsDataService {
+export class FactDataService {
   private readonly relativeUrl = 'Facts';
 
   public constructor(private httpService: FactsHttpService) { }
 
   public async saveFactAsync(fact: Fact): Promise<void> {
-    if (ObjectUtils.isNullOrUndefined(fact.id)) {
+    if (!ObjectUtils.isNullOrUndefined(fact.id)) {
       this.httpService.putAsync(this.relativeUrl, fact);
     } else {
       this.httpService.postAsync(this.relativeUrl, fact);

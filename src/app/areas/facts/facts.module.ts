@@ -2,26 +2,26 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AgGridModule } from 'ag-grid-angular/main';
-import { EditorModule, SharedModule } from 'primeng/primeng';
+import * as prime from 'primeng/primeng';
 
 import { RxFormsModule } from 'app/infrastructure/shared-features/rx-forms';
 import { CollapsibleCardModule } from 'app/infrastructure/widgets/collapsible-card';
-import { SelectModule } from 'app/infrastructure/widgets/select';
+
+import { SharedModule } from 'app/shared';
 
 import * as components from './components';
 import * as appServices from './app-services';
-import * as domainServices from './domain-services';
 import { FactsRoutingModule } from './facts-routing.module';
 import * as resolvers from './resolvers';
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     FactsRoutingModule,
     CollapsibleCardModule,
-    SelectModule,
-    EditorModule,
-    SharedModule,
+    prime.EditorModule,
+    prime.SharedModule,
     RxFormsModule,
     AgGridModule.withComponents([
     ])
@@ -32,9 +32,7 @@ import * as resolvers from './resolvers';
     components.FactEditComponent
   ],
   providers: [
-    appServices.FactsHttpService,
     appServices.FactsNavigationService,
-    domainServices.FactsDataService,
     resolvers.FactEditResolver
   ]
 })

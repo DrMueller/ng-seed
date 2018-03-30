@@ -7,7 +7,6 @@ import { ObjectUtils } from 'app/infrastructure/utils';
 
 import { CTOR_PROP_KEY_PREFIX } from '../decorators';
 
-
 @Injectable()
 export class ObjectFactoryService {
   public createArray<T>(sourceCollection: any[], ctorFn: IParameterlessConstructor<T>): T[] {
@@ -28,7 +27,7 @@ export class ObjectFactoryService {
     return result;
   }
 
-  private getSourceProperty<T>(target: T, source: any, targetPropKey: string): any {
+  private getSourceProperty<T>(source: any, target: T, targetPropKey: string): any {
     const sourceProp = source[targetPropKey];
     const ctor = <IParameterlessConstructor<any>>Reflect.getMetadata(CTOR_PROP_KEY_PREFIX, target, targetPropKey);
 
@@ -58,7 +57,7 @@ export class ObjectFactoryService {
     const sourceProperties = Object.getOwnPropertyNames(source);
 
     sourceProperties.forEach(sourcePropKey => {
-      const sourceProp = this.getSourceProperty(target, source, sourcePropKey);
+      const sourceProp = this.getSourceProperty(source, target, sourcePropKey);
       target[sourcePropKey] = sourceProp;
     });
   }

@@ -4,22 +4,22 @@ import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 
-import { LearningSession } from '../models';
-import { LearningSessionsDataService } from '../domain-services';
+import { LearningSessionEdit } from '../models';
+import { LearningSessionDataService } from '../domain-services';
 
 @Injectable()
-export class LearningSessionResolver implements Resolve<Promise<LearningSession>> {
+export class LearningSessionResolver implements Resolve<Promise<LearningSessionEdit>> {
 
   public constructor(
-    private dataService: LearningSessionsDataService) { }
+    private dataService: LearningSessionDataService) { }
 
-  public async resolve(route: ActivatedRouteSnapshot): Promise<LearningSession> {
+  public async resolve(route: ActivatedRouteSnapshot): Promise<LearningSessionEdit> {
     var id = route.paramMap.get('learningSessionId');
     if (!id || id === '-1') {
-      return Promise.resolve(new LearningSession());
+      return Promise.resolve(new LearningSessionEdit());
     }
 
-    var learningSession = await this.dataService.loadLearningSessionByIdAsync(id);
+    var learningSession = await this.dataService.loadLearningSessionEditByIdAsync(id);
     return learningSession;
   }
 }

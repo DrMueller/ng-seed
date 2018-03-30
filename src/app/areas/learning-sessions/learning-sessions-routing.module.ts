@@ -7,20 +7,26 @@ import * as resolvers from './resolvers';
 const routes: Routes = [
   {
     path: '',
-    component: components.LearningSessionsOverviewComponent,
+    component: components.LearningSessionsComponent,
     children: [
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
       { path: 'overview', component: components.LearningSessionsOverviewComponent },
       {
-        path: ':learningSessionId', component: components.LearningSessionEditComponent, resolve:
-          { learningSession: resolvers.LearningSessionResolver }
+        path: ':learningSessionId',
+        component: components.LearningSessionEditComponent,
+        resolve: { learningSession: resolvers.LearningSessionResolver }
+      },
+      {
+        path: ':learningSessionId/run',
+        component: components.LearningSessionRunComponent,
+        resolve: { runFacts: resolvers.LearningSessionRunResolver }
       }
     ]
-  }];
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-
 export class LearningSessionsRoutingModule { }
