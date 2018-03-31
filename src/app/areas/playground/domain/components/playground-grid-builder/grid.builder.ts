@@ -5,7 +5,7 @@ import {
 import { Individual } from '../../models';
 
 export class GridBuilder {
-  public static buildGrid(gridBuilder: GridBuilderService, getRowStyleCallback: GetRowStyleCallback<Individual>): Grid<Individual> {
+  public static buildGrid(gridBuilder: GridBuilderService<Individual>, getRowStyleCallback: GetRowStyleCallback<Individual>): Grid<Individual> {
     const result = gridBuilder
       .startBuildingOptions()
       .withAutoSizeColumns(true)
@@ -26,7 +26,7 @@ export class GridBuilder {
       .withSuppressSorting(true)
       .buildColumnDefinition()
       .buildGridOptions()
-      .buildGrid<Individual>();
+      .buildGrid();
 
     return result;
   }

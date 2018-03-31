@@ -1,7 +1,7 @@
 import { IGridOptionsBuilderService } from '../interfaces';
 import { Grid } from '../models';
 
-export interface IGridBuilderService {
-  startBuildingOptions(): IGridOptionsBuilderService;
-  buildGrid<T extends object>(): Grid<T>;
+export interface IGridBuilderService<TModel extends object> {
+  startBuildingOptions(): IGridOptionsBuilderService<TModel>;
+  buildGrid(): Grid<TModel>;
 }

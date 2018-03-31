@@ -16,7 +16,7 @@ export class PlaygroundGridBuilderComponent implements OnInit {
   public grid: Grid<Individual>;
 
   constructor(
-    private gridBuilder: GridBuilderService) {
+    private gridBuilder: GridBuilderService<Individual>) {
   }
 
   ngOnInit() {

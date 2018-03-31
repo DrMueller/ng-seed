@@ -7,17 +7,17 @@ import { Grid } from '../models';
 import { GridOptionsBuilderService } from './grid-options-builder.service';
 
 @Injectable()
-export class GridBuilderService implements IGridBuilderService {
+export class GridBuilderService<TModel extends object> implements IGridBuilderService<TModel> {
   private _gridOptions: GridOptions;
 
-  public startBuildingOptions(): IGridOptionsBuilderService {
+  public startBuildingOptions(): IGridOptionsBuilderService<TModel> {
     this._gridOptions = {};
     const result = new GridOptionsBuilderService(this, this._gridOptions);
     return result;
   }
 
-  public buildGrid<T extends object>(): Grid<T> {
-    const result = new Grid<T>(this._gridOptions);
+  public buildGrid(): Grid<TModel> {
+    const result = new Grid<TModel>(this._gridOptions);
     return result;
   }
 }
