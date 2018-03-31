@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {
-    Grid, GridBuilderService
+  Grid, GridBuilderService, RowStyleObject
 } from 'app/infrastructure/shared-features/ag-grid/ag-grid-building';
 
 import { Individual } from '../../models';
@@ -20,8 +20,9 @@ export class PlaygroundGridBuilderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.grid = GridBuilder.buildGrid(this.gridBuilder);
-    this.grid.entries.push(...Individual.createSome());
+    this.grid = GridBuilder.buildGrid(this.gridBuilder, this.getGridRowStyle.bind(this));
+    const individuals = Individual.createSome();
+    this.grid.initializeEntries(individuals);
   }
 
   public removeRowClicked(): void {
@@ -44,5 +45,13 @@ export class PlaygroundGridBuilderComponent implements OnInit {
     ind.firstName = 'Tyrion';
     ind.id = 'z1324';
     this.grid.entries.push(ind);
+  }
+
+  private getGridRowStyle(row: RowStyleObject<Individual>): any {
+    if (row.data.lastName === 'Lannister') {
+      return { background: 'orange' };
+    }
+
+    return undefined;
   }
 }

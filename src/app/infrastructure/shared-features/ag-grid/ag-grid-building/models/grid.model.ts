@@ -23,6 +23,11 @@ export class Grid<T extends object> {
     this.updateRowDataWhenGridReady();
   }
 
+  public initializeEntries(entries: T[]): void {
+    this.entries.splice(0, this.entries.length);
+    this.entries.push(...entries);
+  }
+
   private createProxy(entry: T): T {
     const entryProxyHandler = new ObversableProxyHandler<T>(this.gridEntryChanged.bind(this));
     const proxy = new Proxy(entry, entryProxyHandler);

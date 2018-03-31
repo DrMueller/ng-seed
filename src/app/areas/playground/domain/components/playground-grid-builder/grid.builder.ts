@@ -1,14 +1,15 @@
 import {
-    Grid, GridBuilderService
+  Grid, GridBuilderService, GetRowStyleCallback
 } from 'app/infrastructure/shared-features/ag-grid/ag-grid-building';
 
 import { Individual } from '../../models';
 
 export class GridBuilder {
-  public static buildGrid(gridBuilder: GridBuilderService): Grid<Individual> {
+  public static buildGrid(gridBuilder: GridBuilderService, getRowStyleCallback: GetRowStyleCallback<Individual>): Grid<Individual> {
     const result = gridBuilder
       .startBuildingOptions()
       .withAutoSizeColumns(true)
+      .withRowStyleCallback(getRowStyleCallback)
       .startBuildingColumnDefinition('ID', 'id')
       .startBuildingColumnSize()
       .withWidth(100)
